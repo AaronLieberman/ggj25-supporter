@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Summon
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Platform
+  - GroundedAI
+  - Ground
+  - Wall
+  - FlyingAI
+  - Player
+  - Summoning
+  - PlayerInteraction
+  - EnemyInteraction
+  - SummonInteraction
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: FarBackground
+    uniqueID: 2382812189
+    locked: 0
+  - name: Background
+    uniqueID: 3666106481
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 3990589411
+    locked: 0
