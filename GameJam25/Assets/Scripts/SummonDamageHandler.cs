@@ -46,7 +46,7 @@ public class SummonDamageHandler : MonoBehaviour
         Vector3 impulseDir = new Vector3(-collisionDir.x, 0.2f, 3).normalized;
 
         transform.parent.position += impulseDir * knockBackDistance;
-        transform.parent.GetComponentInChildren<Rigidbody2D>().velocity = impulseDir * knockBackVelocity;
+        transform.parent.GetComponentInChildren<Rigidbody2D>().linearVelocity = impulseDir * knockBackVelocity;
         InHurtState = true;
     }
 

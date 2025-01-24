@@ -162,30 +162,30 @@ public class AI : MonoBehaviour
             if (moveRight)
             {
                 transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
             }
             else if (!moveRight)
             {
                 transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
             }
 
             if (transform.position.x < target.position.x)
             {
                 transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 moveRight = true;
             }
             else if (transform.position.x > target.position.x)
             {
                 transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 moveRight = false;
             }
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
             AttemptFindAndAttachPlayerGameObject();
         }
     }
@@ -194,36 +194,36 @@ public class AI : MonoBehaviour
     {
         if (target != null)
         {
-            if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > 0.1f)
+            if (Mathf.Abs(GetComponent<Rigidbody2D>().linearVelocity.y) > 0.1f)
             {
                 if (moveRight)
                 {
                     transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 }
                 else if (!moveRight)
                 {
                     transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 }
 
                 if (transform.position.x < target.position.x)
                 {
                     transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                     moveRight = true;
                 }
                 else if (transform.position.x > target.position.x)
                 {
                     transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                    GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                    GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                     moveRight = false;
                 }
             }
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
             AttemptFindAndAttachPlayerGameObject();
         }
     }
@@ -235,35 +235,35 @@ public class AI : MonoBehaviour
             if (moveRight)
             {
                 transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
             }
             else if (!moveRight)
             {
                 transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
             }
             if (transform.position.x < target.position.x)
             {
                 transform.localScale = new Vector3(inverseScale * enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 moveRight = true;
             }
             else if (transform.position.x > target.position.x)
             {
                 transform.localScale = new Vector3(inverseScale * -enemyScaleSize, enemyScaleSize, 1f);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                GetComponent<Rigidbody2D>().linearVelocity = new Vector2(-speed, GetComponent<Rigidbody2D>().linearVelocity.y);
                 moveRight = false;
             }
         }
         else
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
             AttemptFindAndAttachPlayerGameObject();
         }
 
         notOnEdge = Physics2D.OverlapCircle(edgeCheck.position, edgeCheckRadius, whatIsNonEdge);
         if (!notOnEdge)
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0f, 0f);
     }
 
     private void MovePatrolIntervalEnemy()
@@ -327,11 +327,11 @@ public class AI : MonoBehaviour
 
         if (moveType == MoveType.HOP)
         {
-            if (_rigidBody.velocity.y > 0.1f)
+            if (_rigidBody.linearVelocity.y > 0.1f)
             {
                 _state = MovementState.Jumping;
             }
-            else if (_rigidBody.velocity.y < -0.1f)
+            else if (_rigidBody.linearVelocity.y < -0.1f)
             {
                 _state = MovementState.Falling;
             }
@@ -342,7 +342,7 @@ public class AI : MonoBehaviour
         }
         else
         {
-            _state = movedThisFrame || Mathf.Abs(_rigidBody.velocity.x) > 0.1f ? MovementState.Move : MovementState.Idle;
+            _state = movedThisFrame || Mathf.Abs(_rigidBody.linearVelocity.x) > 0.1f ? MovementState.Move : MovementState.Idle;
         }
 
         _animator.SetInteger("state", (int)_state);

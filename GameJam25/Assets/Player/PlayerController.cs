@@ -107,15 +107,15 @@ public class PlayerController : MonoBehaviour
                 if (isOnGround)
                 {
                     _audioSource.PlayOneShot(JumpClip);
-                    _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, JumpSpeed);
+                    _rigidBody.linearVelocity = new Vector3(_rigidBody.linearVelocity.x, JumpSpeed);
                 }
                 else
                 {
                     _audioSource.PlayOneShot(DashClips[Random.Range(0,DashClips.Count-1)]);
                     _usedDoubleJump = true;
-                    _rigidBody.velocity = new Vector3(
-                        _rigidBody.velocity.x + (_spriteRenderer.flipX ? -DashSpeed : DashSpeed),
-                        _rigidBody.velocity.y);
+                    _rigidBody.linearVelocity = new Vector3(
+                        _rigidBody.linearVelocity.x + (_spriteRenderer.flipX ? -DashSpeed : DashSpeed),
+                        _rigidBody.linearVelocity.y);
                     _state = MovementState.Dashing;
                 }
             }
@@ -131,11 +131,11 @@ public class PlayerController : MonoBehaviour
 
             if (_state != MovementState.Dashing)
             {
-                if (_rigidBody.velocity.y > 0.1f)
+                if (_rigidBody.linearVelocity.y > 0.1f)
                 {
                     _state = MovementState.Jumping;
                 }
-                else if (_rigidBody.velocity.y < -0.1f)
+                else if (_rigidBody.linearVelocity.y < -0.1f)
                 {
                     _state = MovementState.Falling;
                 }
@@ -147,10 +147,10 @@ public class PlayerController : MonoBehaviour
                 case MovementState.Jumping:
                 case MovementState.Running:
                 case MovementState.Falling:
-                    _rigidBody.velocity = new Vector3(h * MovementSpeed, _rigidBody.velocity.y);
+                    _rigidBody.linearVelocity = new Vector3(h * MovementSpeed, _rigidBody.linearVelocity.y);
                     break;
                 case MovementState.Channelling:
-                    _rigidBody.velocity = new Vector3(0, _rigidBody.velocity.y);
+                    _rigidBody.linearVelocity = new Vector3(0, _rigidBody.linearVelocity.y);
                     break;
             }
 

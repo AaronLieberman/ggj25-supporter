@@ -36,7 +36,7 @@ public class SimpleSummonBehavior : MonoBehaviour
 
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
-        _rb.velocity = new Vector2(Speed, _rb.velocity.y); //TODO: Give it actual movement
+        _rb.linearVelocity = new Vector2(Speed, _rb.linearVelocity.y); //TODO: Give it actual movement
     }
 
     private void FixedUpdate()
