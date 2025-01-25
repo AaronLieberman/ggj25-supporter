@@ -1,6 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+public enum PhaseSkipTo
+{
+    None,
+    StartCinematic,
+    StartOfControl
+}
+
 public class PhaseManager : MonoBehaviour
 {
     IntroFade _introfade;
@@ -9,7 +16,7 @@ public class PhaseManager : MonoBehaviour
     PlayerController _player;
     BossController _boss;
 
-    public bool SkipTitles;
+    public PhaseSkipTo SkipTo;
 
     // should have a DivingGear and a Throwable on it
     public DivingGear DivingGearPrefab;
@@ -32,13 +39,14 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase0()
     {
+        if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
+
         _player.SetControlsEnabled(false);
 
-        if (!SkipTitles)
-        {
-            _introfade.enabled = true;
-            yield return Utilities.DoAndWait(_introfade.Go());
-        }
+        _introfade.enabled = true;
+        yield return Utilities.DoAndWait(_introfade.Go());
+
+        if (SkipTo == PhaseSkipTo.StartCinematic) Utilities.FastMode = false;
 
         // Sandy underwater background, basically the same left to right.
 
@@ -56,6 +64,8 @@ public class PhaseManager : MonoBehaviour
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
         _player.SetControlsEnabled(true);
+
+        if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
         yield return heroWalk;

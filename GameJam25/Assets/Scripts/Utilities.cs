@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 public static class Utilities
 {
-	public static float _timeScale = 1;
+    public static bool FastMode { get { return Time.timeScale > 1; } set { Time.timeScale = value ? 10 : 1; } }
 
-	public static T GetRootComponent<T>() where T : Component
+    public static T GetRootComponent<T>() where T : Component
 	{
 		return SceneManager.GetActiveScene().GetRootGameObjects()
 			.Select(a => a.GetComponent<T>())
@@ -85,6 +85,6 @@ public static class Utilities
 
 	public static IEnumerator WaitForSeconds(float seconds)
 	{
-		yield return new WaitForSeconds(seconds * _timeScale);
+		yield return new WaitForSeconds(seconds / Time.timeScale);
 	}
 }
