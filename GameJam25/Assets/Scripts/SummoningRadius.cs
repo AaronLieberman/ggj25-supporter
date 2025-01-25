@@ -8,7 +8,7 @@ public class SummoningRadius : MonoBehaviour
     SpriteRenderer _sprite;
     AudioSource _audioSource;
 
-    bool _isSummoning = false;
+    // bool _isSummoning = false;
 
     public PlayerController Player;
 
@@ -48,28 +48,28 @@ public class SummoningRadius : MonoBehaviour
 
     void StartSummoning()
     {
-        _isSummoning = true;
-        _sprite.enabled = true;
+        // _isSummoning = true;
+        // _sprite.enabled = true;
 
-        _audioSource.mute = false;
+        // _audioSource.mute = false;
 
-        for (int i=0; i < targets.Count; i++)
-        {
-            targets[i].StartSummoning();
-        }
+        // for (int i=0; i < targets.Count; i++)
+        // {
+        //     targets[i].StartSummoning();
+        // }
     }
 
     void StopSummoning()
     {
-        _isSummoning = false;
-        _sprite.enabled = false;
+        // _isSummoning = false;
+        // _sprite.enabled = false;
 
-        _audioSource.mute = true;
+        // _audioSource.mute = true;
 
-        for (int i = 0; i < targets.Count; i++)
-        {
-            targets[i].CancelSummoning();
-        }
+        // for (int i = 0; i < targets.Count; i++)
+        // {
+        //     targets[i].CancelSummoning();
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

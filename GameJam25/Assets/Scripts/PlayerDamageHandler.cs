@@ -41,7 +41,7 @@ public class PlayerDamageHandler : MonoBehaviour
     {
         InHurtState = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return Utilities.WaitForSeconds(3f);
 
         InHurtState = false;
     }

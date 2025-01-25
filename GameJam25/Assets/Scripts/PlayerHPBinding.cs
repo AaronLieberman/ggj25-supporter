@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHPBinding : MonoBehaviour
 {
+    PlayerController _player;
+
     public GameObject HeartPrefab;
 
     public int HeartSize = 100;
 
     private List<HeartSpriteSwitch> hearts = new List<HeartSpriteSwitch>();
 
+    void Awake()
+    {
+        _player = Utilities.GetRootComponent<PlayerController>();
+    }
+
     private void Start()
     {
-        var playerHealth = PlayerController.Instance.EntityResources;
+        var playerHealth = _player.EntityResources;
         playerHealth.HealthChanged += UpdateHealth;
 
         for (int i = 0; i < playerHealth.MaxHealth; i++)
@@ -34,7 +42,7 @@ public class PlayerHPBinding : MonoBehaviour
 
     void UpdateHealth()
     {
-        var playerHealth = PlayerController.Instance.EntityResources;
+        var playerHealth = _player.EntityResources;
         for (int i = 0; i < playerHealth.MaxHealth; i++)
         {
             var heart = hearts[i];

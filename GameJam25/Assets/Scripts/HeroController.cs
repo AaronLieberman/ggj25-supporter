@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,9 @@ public class HeroController : MonoBehaviour
 
     enum HeroState { Idle, Running }
 
-    [SerializeField] float MovementSpeed = 6;
+    //[SerializeField] float MovementSpeed = 6;
 
-    HeroState _heroState = HeroState.Idle;
+    //HeroState _heroState = HeroState.Idle;
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
@@ -47,13 +48,39 @@ public class HeroController : MonoBehaviour
         if (_footstepTimer >= FootstepInterval)
         {
             _footstepTimer = 0f;
-            _audioSource.PlayOneShot(FootstepClips[Random.Range(0, FootstepClips.Count - 1)], 0.5f);
+            _audioSource.PlayOneShot(FootstepClips[UnityEngine.Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
     }
 
     public void DashComplete()
     {
-        _heroState = HeroState.Idle;
+        // _heroState = HeroState.Idle;
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
+    }
+
+    public IEnumerator FloatTo(float x, float y, float seconds)
+    {
+        Debug.Log("Hero floating down");
+        yield return Utilities.WaitForSeconds(seconds);
+        Debug.Log("Hero landed");
+    }
+
+    public IEnumerator WalkTo(float x, float y, float seconds)
+    {
+        Debug.Log("Hero walking");
+        yield return Utilities.WaitForSeconds(seconds);
+        Debug.Log("Hero stopped");
+    }
+
+    public IEnumerator Say(string v, float seconds)
+    {
+        Debug.Log("Hero says: \"" + v + "\"");
+        yield return Utilities.WaitForSeconds(seconds);
+    }
+
+    public IEnumerator Throw(string itemName, float x, float y, float seconds)
+    {
+        Debug.Log("Hero throws " + itemName);
+        yield return Utilities.WaitForSeconds(seconds);
     }
 }

@@ -13,9 +13,20 @@ public class CameraController : MonoBehaviour
     bool _firstFrame = true;
     float _initialY;
 
+    public void Follow(GameObject o)
+    {
+        Debug.Log("Camera following " + o.name);
+    }
+
+    public IEnumerator Shake(float seconds)
+    {
+        Debug.Log("Camera shake");
+        yield return Utilities.WaitForSeconds(seconds);
+    }
+
     private void Start()
     {
-        Screen.SetResolution(1920, 1080, true, 60);
+        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, new RefreshRate() { numerator = 1, denominator = 60 });
     }
 
     void Update()

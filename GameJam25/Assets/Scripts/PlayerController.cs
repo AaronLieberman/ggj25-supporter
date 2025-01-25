@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController _instance;
-    public static PlayerController Instance => _instance;
-
-    [HideInInspector] public EntityResources EntityResources;
-
     enum PlayerState { Idle, Running, Dashing }
 
     [SerializeField] float MovementSpeed = 6;
@@ -21,16 +16,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float FootstepInterval = 0.15f;
     float _footstepTimer = 0f;
 
+    public EntityResources EntityResources { get; private set; }
     Rigidbody2D _rigidBody;
     SpriteRenderer _spriteRenderer;
     Animator _animator;
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
 
-    void Start()
+    bool _controlsEnabled = true;
+
+    void Awake()
     {
         EntityResources = GetComponent<EntityResources>();
-
         _rigidBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
@@ -63,14 +60,6 @@ public class PlayerController : MonoBehaviour
 
         if (EntityResources.isAlive && _playerState != PlayerState.Dashing)
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-
-            if (horizontal != 0)
-            {
-                _spriteRenderer.flipX = horizontal < 0;
-            }
-
             // some states are persistent until they complete, otherwise, default to idle unless we have a better
             // state to be in
             switch (_playerState)
@@ -82,26 +71,37 @@ public class PlayerController : MonoBehaviour
                     break;
             }
 
-            if (Input.GetButtonDown("Dash"))
+            if (_controlsEnabled)
             {
-                _playerState = PlayerState.Dashing;
+                float horizontal = Input.GetAxisRaw("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
 
-                _audioSource.PlayOneShot(DashClips[Random.Range(0, DashClips.Count - 1)]);
-                _rigidBody.AddForce(new Vector2(DashSpeed * horizontal, (DashSpeed * vertical) * 0.65f), ForceMode2D.Impulse);
-            }
-            else if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
-            {
-                _playerState = PlayerState.Running;
+                if (horizontal != 0)
+                {
+                    _spriteRenderer.flipX = horizontal < 0;
+                }
 
-                PlayFootsteps();
-            }
+                if (Input.GetButtonDown("Dash"))
+                {
+                    _playerState = PlayerState.Dashing;
 
-            switch (_playerState)
-            {
-                case PlayerState.Idle:
-                case PlayerState.Running:
-                    _rigidBody.linearVelocity = new Vector2(horizontal * MovementSpeed, (vertical * MovementSpeed) * 0.65f);
-                    break;
+                    _audioSource.PlayOneShot(DashClips[Random.Range(0, DashClips.Count - 1)]);
+                    _rigidBody.AddForce(new Vector2(DashSpeed * horizontal, (DashSpeed * vertical) * 0.65f), ForceMode2D.Impulse);
+                }
+                else if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
+                {
+                    _playerState = PlayerState.Running;
+
+                    PlayFootsteps();
+                }
+
+                switch (_playerState)
+                {
+                    case PlayerState.Idle:
+                    case PlayerState.Running:
+                        _rigidBody.linearVelocity = new Vector2(horizontal * MovementSpeed, (vertical * MovementSpeed) * 0.65f);
+                        break;
+                }
             }
         }
 
@@ -122,5 +122,18 @@ public class PlayerController : MonoBehaviour
     {
         _playerState = PlayerState.Idle;
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
+    }
+
+    public IEnumerator FloatTo(float x, float y, float seconds)
+    {
+        Debug.Log("Player floating down");
+        yield return Utilities.WaitForSeconds(seconds);
+        Debug.Log("Player landed");
+    }
+
+    public void SetControlsEnabled(bool v)
+    {
+        Debug.Log(v ? "Player controls enabled" : "Player controls disabled");
+        _controlsEnabled = v;
     }
 }

@@ -26,7 +26,7 @@ public class GameFinish : MonoBehaviour
 
     IEnumerator QuitAfterFinish()
     {
-        yield return new WaitForSeconds(3f);
+        yield return Utilities.WaitForSeconds(3f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
