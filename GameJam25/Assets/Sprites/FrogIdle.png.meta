@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1a876c9d1508076458858ff4bf74e487
+guid: 6c0584c0cf45e9d4abdd978e3f309029
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2948068875055997319
-    second: HeroShadow_0
+      213: -2568212192572625928
+    second: FrogIdle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeroShadow_0
+      name: FrogIdle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 64
-        height: 16
+        width: 22
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7812917b505a9e820800000000000000
-      internalID: 2948068875055997319
+      spriteID: 8fba1e92e90eb5cd0800000000000000
+      internalID: -2568212192572625928
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HeroShadow_0: 2948068875055997319
+      FrogIdle_0: -2568212192572625928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
