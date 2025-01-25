@@ -5,18 +5,32 @@ using UnityEngine;
 public class PlayerDamageHandler : MonoBehaviour
 {
     [SerializeField]
-    private EntityResources playerResources;
-    [SerializeField]
     private List<string> interactionTags;
     [SerializeField]
     private float damageCooldown = 5f;
     private float timeSinceLastDamage;
     private bool damageable = false;
+    EntityResources playerResources;
 
     public bool InHurtState { get; private set; }
 
+    void AttachPlayerResources()
+    {
+        playerResources = Utilities.GetRootComponent<PlayerController>().GetComponent<EntityResources>();
+    }
+
+    private void Start()
+    {
+        AttachPlayerResources();
+    }
+
     private void FixedUpdate()
     {
+        if (!playerResources)
+        {
+            AttachPlayerResources();
+        }
+
         if (damageable && timeSinceLastDamage <= Time.time)
         {
             StartCoroutine(ApplyHurt());
