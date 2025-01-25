@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
 
             if (_controlsEnabled)
             {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StartCoroutine(Utilities.GetRootComponent<HeroController>().WalkTo(new Vector2(transform.position.x, transform.position.y)));
+                }
+
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
 

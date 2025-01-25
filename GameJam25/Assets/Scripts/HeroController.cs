@@ -55,7 +55,15 @@ public class HeroController : MonoBehaviour
 
     void MoveHero()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, MovementSpeed * Time.deltaTime);
+        // Rotate hero based on where they are going.
+        transform.localScale = new Vector3(
+            transform.position.x > _targetPosition.x ? -1 : transform.localScale.x * transform.localScale.x, 
+            transform.localScale.y, 
+            transform.localScale.z
+        );
+
+        // Update hero to move towards target position.
+        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, MovementSpeed * Time.deltaTime * Time.timeScale);
     }
 
     void PlayFootsteps()
@@ -66,12 +74,6 @@ public class HeroController : MonoBehaviour
             _footstepTimer = 0f;
             _audioSource.PlayOneShot(FootstepClips[UnityEngine.Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
-    }
-
-    public void DashComplete()
-    {
-        // _heroState = HeroState.Idle;
-        _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 
     void CancelMovement()
