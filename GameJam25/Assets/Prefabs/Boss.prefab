@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarfishShooter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 898801865544753360, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.937315
@@ -254,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarfishShooter
       objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 898801865544753360, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.937315
@@ -315,6 +323,10 @@ PrefabInstance:
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_Name
       value: StarfishShooter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 898801865544753360, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_LocalPosition.x
