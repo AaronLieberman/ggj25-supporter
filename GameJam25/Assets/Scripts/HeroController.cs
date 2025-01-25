@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class HeroController : MonoBehaviour
@@ -9,10 +11,12 @@ public class HeroController : MonoBehaviour
     [HideInInspector] public EntityResources EntityResources;
 
     enum HeroState { Idle, Running }
+    enum MovementType { Floating, Walking }
 
     [SerializeField] float MovementSpeed = 6;
 
     HeroState _heroState = HeroState.Idle;
+    MovementType _movementState = MovementType.Floating;
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
@@ -24,7 +28,7 @@ public class HeroController : MonoBehaviour
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
 
-    TaskCompletionSource<bool> _movementTask = new TaskCompletionSource<bool>();
+    CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
     Vector2 _targetPosition;
 
@@ -46,10 +50,6 @@ public class HeroController : MonoBehaviour
         if (Math.Abs(Vector2.Distance(transform.position, _targetPosition)) > _minTargetDistanceThreshold)
         {
             MoveHero();
-        }
-        else if (!_movementTask.Task.IsCompleted)
-        {
-            _movementTask.SetResult(true);
         }
     }
 
@@ -74,20 +74,53 @@ public class HeroController : MonoBehaviour
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 
+    void CancelMovement()
+    {
+        _movementCancel.Cancel();
+        _movementCancel = new CancellationTokenSource();
+    }
+
+    void SetMovementTarget(Vector2 targetPos, MovementType movementType)
+    {
+        _movementState = movementType;
+        _targetPosition = targetPos;
+        CancelMovement();
+    }
+
+    bool IsCloseToTarget()
+    {
+        return Math.Abs(Vector2.Distance(transform.position, _targetPosition)) < _minTargetDistanceThreshold;
+    }
+
+    IEnumerator WaitUntilCloseToTarget()
+    {
+        yield return new WaitUntil(() => IsCloseToTarget() || _movementCancel.IsCancellationRequested);
+    }
+
     public IEnumerator FloatTo(Vector2 targetPos)
     {
         Debug.Log("Hero floating down");
-        _targetPosition = targetPos;
-        _movementTask = new TaskCompletionSource<bool>();
-        yield return Utilities.DoAndWait(_movementTask.Task);
-        Debug.Log("Hero landed");
+
+        SetMovementTarget(targetPos, MovementType.Floating);
+        yield return WaitUntilCloseToTarget();
+
+        if (!_movementCancel.IsCancellationRequested)
+        {
+            Debug.Log("Hero landed");
+        }
     }
 
     public IEnumerator WalkTo(Vector2 targetPos)
     {
         Debug.Log("Hero walking");
-        yield return Utilities.WaitForSeconds(1);
-        Debug.Log("Hero stopped");
+
+        SetMovementTarget(targetPos, MovementType.Walking);
+        yield return WaitUntilCloseToTarget();
+
+        if (!_movementCancel.IsCancellationRequested)
+        {
+            Debug.Log("Hero stopped");
+        }
     }
 
     public IEnumerator Say(string v, float seconds)

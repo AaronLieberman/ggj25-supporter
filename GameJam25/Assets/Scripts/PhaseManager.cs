@@ -51,7 +51,7 @@ public class PhaseManager : MonoBehaviour
         yield return Utilities.WaitForSeconds(1);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = _hero.WalkTo(new Vector2(30.0f, 0.0f));
+        var heroWalk = _hero.WalkTo(new Vector2(10.0f, 0.0f));
 
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
