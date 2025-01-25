@@ -81,9 +81,9 @@ public class PhaseManager : MonoBehaviour
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
         yield return heroWalk;
-        yield return _hero.Say("Alright Leviathan, your reign of destruction is over! I'm here to slay you!", 4);
+        yield return _hero.Say("Alright Leviathan, your reign of destruction is over! I'm here to slay you!");
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
-        yield return _hero.Say("Oh, and that little guy over there is going to help, too.", 4.5f);
+        yield return _hero.Say("Oh, and that little guy over there is going to help, too.");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
         var bossRoar = _boss.Say("ROOOOARRRRRR!!!!", 4.5f);
         // Screen shake.
@@ -103,7 +103,7 @@ public class PhaseManager : MonoBehaviour
         yield return Utilities.WaitForSeconds(5);
                 
         // Hero dialog bubble: 
-        yield return _hero.Say("That thing was messing up my hair anyway.", 3);
+        yield return _hero.Say("That thing was messing up my hair anyway.");
 
 
     }
