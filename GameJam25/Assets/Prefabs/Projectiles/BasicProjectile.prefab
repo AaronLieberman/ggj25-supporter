@@ -147,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovePerSecond: {x: -5, y: 0, z: 0}
   RandomSpreadInHalfDegrees: 10
+  MaxLifetime: 10
+  startTime: 0
 --- !u!61 &7898265798416357435
 BoxCollider2D:
   m_ObjectHideFlags: 0
