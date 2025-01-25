@@ -28,6 +28,7 @@ public class HeroController : MonoBehaviour
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
     Transform _gfxHolder;
+    DialogBubbleController _dialogBubble;
 
     CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
@@ -45,6 +46,7 @@ public class HeroController : MonoBehaviour
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
         _gfxHolder = transform.Find("GFX");
+        _dialogBubble = GetComponentInChildren<DialogBubbleController>();
 
         _targetPosition = transform.position;
     }
@@ -135,7 +137,7 @@ public class HeroController : MonoBehaviour
     public IEnumerator Say(string v, float seconds)
     {
         Debug.Log("Hero says: \"" + v + "\"");
-        yield return Utilities.WaitForSeconds(seconds);
+        return _dialogBubble.PopDialog(v);
     }
 
     public IEnumerator Throw(string itemName, Vector2 targetPos)

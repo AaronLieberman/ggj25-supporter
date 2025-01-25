@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
@@ -16,19 +18,21 @@ public class DialogBubbleController : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private float startTime = 0;
+    private float startTime = float.MinValue;
     private Vector3 startingScale;
 
 
     void Start()
     {
         startingScale = transform.localScale;
-        startTime = Time.time;
+        transform.localScale = Vector3.zero;
     }
 
-    public void PopDialog(string dialogKey)
+    public IEnumerator PopDialog(string dialogKey)
     {
-
+        startTime = Time.time;
+        dialogText.text = dialogKey;
+        return Utilities.WaitForSeconds(SpawnDuration + Duration + DespawnDuration);
     }
 
     // Update is called once per frame
@@ -57,6 +61,10 @@ public class DialogBubbleController : MonoBehaviour
         {
             float currentScaleMultiplyer = DespawnCurve.Evaluate(timeSinceSpawn - SpawnDuration - Duration);
             rectTransform.localScale = startingScale * currentScaleMultiplyer;
+        }
+        if(timeSinceSpawn > SpawnDuration + Duration + DespawnDuration)
+        {
+            transform.localScale = Vector3.zero;
         }
     }
 }

@@ -84,7 +84,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SpawnDuration: 1
+  SpawnDuration: 0.25
   DespawnCurve:
     serializedVersion: 2
     m_Curve:
@@ -109,7 +109,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  DespawnDuration: 1
+  DespawnDuration: 0.25
   Duration: 4
   dialogText: {fileID: 3829956763855202196}
 --- !u!95 &1768256219206609611
