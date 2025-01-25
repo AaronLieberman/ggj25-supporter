@@ -144,9 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9683818c161070845902ab72db4a18a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityResources: {fileID: 0}
-  MovementSpeed: 6
-  DashSpeed: 17
+  MovementSpeed: 10
+  DashSpeed: 25
   DashClips:
   - {fileID: 8300000, guid: 89cd6035cdbe42f4c93846ef39463fdc, type: 3}
   - {fileID: 8300000, guid: ebe005f950de0c745b4ebae130c4cc41, type: 3}
