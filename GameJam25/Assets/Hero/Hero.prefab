@@ -112,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.5, y: 7}
+  m_AnchoredPosition: {x: 0.5, y: 2.19}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5286635967666832327
@@ -135,8 +135,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -304377885
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1285744395526478003
 MonoBehaviour:
@@ -737,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889203517055737670}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25881904, y: -0, z: -0, w: 0.9659259}
+  m_LocalRotation: {x: -0.25881907, y: -0, z: -0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -912,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1610029563128741741, guid: 8ec721d2ce8c29240af9e72f90b1531d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 13.07
+      value: 9.23
       objectReference: {fileID: 0}
     - target: {fileID: 1610029563128741741, guid: 8ec721d2ce8c29240af9e72f90b1531d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
