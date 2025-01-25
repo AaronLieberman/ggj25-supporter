@@ -94,6 +94,7 @@ public class PhaseManager : MonoBehaviour
         yield return bossRoar;
 
         // The diving gear flies off the Hero. It lands on the ground.
+        _hero.SetDivingGear(false);
         var divingGearObject = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         yield return divingGearObject.GetComponent<Throwable>().ThrowTo(-40, -20, 2);
         //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.

@@ -32,6 +32,8 @@ public class HeroController : MonoBehaviour
     float _minTargetDistanceThreshold = 0.1f;
     Vector2 _targetPosition;
 
+    bool _isDivingGearEquipped = false;
+
     void Start()
     {
         EntityResources = GetComponent<EntityResources>();
@@ -135,5 +137,10 @@ public class HeroController : MonoBehaviour
     {
         Debug.Log("Hero throws " + itemName);
         yield return Utilities.WaitForSeconds(1);
+    }
+
+    public void SetDivingGear(bool v)
+    {
+        _isDivingGearEquipped = v;
     }
 }
