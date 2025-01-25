@@ -27,8 +27,6 @@ public class PhaseManager : MonoBehaviour
     // should have a DivingGear and a Throwable on it
     public DivingGear DivingGearPrefab;
 
-    public BossController Boss;
-
     void Awake()
     {
         _introfade = Utilities.GetRootComponent<IntroFade>();
@@ -112,10 +110,9 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase1()
     {
-
         if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
 
-        Boss.StartShooters();
+        _boss.StartShooters();
         yield return null;
     }
 }
