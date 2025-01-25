@@ -134,7 +134,7 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    public IEnumerator Say(string v, float seconds)
+    public IEnumerator Say(string v)
     {
         Debug.Log("Hero says: \"" + v + "\"");
         return _dialogBubble.PopDialog(v);
