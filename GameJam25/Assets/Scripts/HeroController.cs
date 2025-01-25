@@ -1,20 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
-    public static HeroController _instance;
-    public static HeroController Instance => _instance;
-
     [HideInInspector] public EntityResources EntityResources;
 
     enum HeroState { Idle, Running }
 
-    //[SerializeField] float MovementSpeed = 6;
+    [SerializeField] float MovementSpeed = 6;
 
-    //HeroState _heroState = HeroState.Idle;
+    HeroState _heroState = HeroState.Idle;
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
@@ -26,6 +24,10 @@ public class HeroController : MonoBehaviour
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
 
+    TaskCompletionSource<bool> _movementTask = new TaskCompletionSource<bool>();
+    float _minTargetDistanceThreshold = 0.1f;
+    Vector2 _targetPosition;
+
     void Start()
     {
         EntityResources = GetComponent<EntityResources>();
@@ -35,11 +37,25 @@ public class HeroController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
+
+        _targetPosition = transform.position;
     }
 
     void Update()
     {
-       
+        if (Math.Abs(Vector2.Distance(transform.position, _targetPosition)) > _minTargetDistanceThreshold)
+        {
+            MoveHero();
+        }
+        else if (!_movementTask.Task.IsCompleted)
+        {
+            _movementTask.SetResult(true);
+        }
+    }
+
+    void MoveHero()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, MovementSpeed * Time.deltaTime);
     }
 
     void PlayFootsteps()
@@ -58,17 +74,19 @@ public class HeroController : MonoBehaviour
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 
-    public IEnumerator FloatTo(float x, float y, float seconds)
+    public IEnumerator FloatTo(Vector2 targetPos)
     {
         Debug.Log("Hero floating down");
-        yield return Utilities.WaitForSeconds(seconds);
+        _targetPosition = targetPos;
+        _movementTask = new TaskCompletionSource<bool>();
+        yield return Utilities.DoAndWait(_movementTask.Task);
         Debug.Log("Hero landed");
     }
 
-    public IEnumerator WalkTo(float x, float y, float seconds)
+    public IEnumerator WalkTo(Vector2 targetPos)
     {
         Debug.Log("Hero walking");
-        yield return Utilities.WaitForSeconds(seconds);
+        yield return Utilities.WaitForSeconds(1);
         Debug.Log("Hero stopped");
     }
 
@@ -78,9 +96,9 @@ public class HeroController : MonoBehaviour
         yield return Utilities.WaitForSeconds(seconds);
     }
 
-    public IEnumerator Throw(string itemName, float x, float y, float seconds)
+    public IEnumerator Throw(string itemName, Vector2 targetPos)
     {
         Debug.Log("Hero throws " + itemName);
-        yield return Utilities.WaitForSeconds(seconds);
+        yield return Utilities.WaitForSeconds(1);
     }
 }
