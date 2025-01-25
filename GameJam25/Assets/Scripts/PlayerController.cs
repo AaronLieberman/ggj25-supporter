@@ -83,6 +83,11 @@ public class PlayerController : MonoBehaviour
                     EntityResources.Damage(5);
                 }
 
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    EntityResources.Heal(10);
+                }
+
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
 

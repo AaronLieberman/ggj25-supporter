@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,6 +30,7 @@ public class EntityResources : MonoBehaviour
     public UnityAction Death;
 
     [SerializeField] List<AudioClip> TakeDamageClips;
+    [SerializeField] List<AudioClip> HealClips;
     AudioSource _audioSource;
 
     private void Awake()
@@ -41,9 +43,31 @@ public class EntityResources : MonoBehaviour
         Health = MaxHealth;
     }
 
+    AudioClip GetRandomAudioClip(List<AudioClip> audioClips)
+    {
+        if (!audioClips.Any())
+            return null;
+
+        return audioClips[UnityEngine.Random.Range(0, audioClips.Count - 1)];
+    }
+
     public void Damage(int amount=1)
     {
         Health -= amount;
-        _audioSource.PlayOneShot(TakeDamageClips[UnityEngine.Random.Range(0, TakeDamageClips.Count - 1)]);
+        AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
+        if (damageClip)
+        {
+            _audioSource.PlayOneShot(damageClip);
+        }
+    }
+
+    public void Heal(int amount=1)
+    {
+        Health += amount;
+        AudioClip healClip = GetRandomAudioClip(HealClips);
+        if (healClip)
+        {
+            _audioSource.PlayOneShot(healClip);
+        }
     }
 }

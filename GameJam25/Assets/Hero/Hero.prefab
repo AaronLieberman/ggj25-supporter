@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce316cdaf001df46ab786c2425b71ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EntityResources: {fileID: 8363095518416421682}
+  EntityResources: {fileID: 6692807985201443378}
   HealthSlider: {fileID: 7871315315871040936}
 --- !u!1 &4018298045091704546
 GameObject:
@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1400807245426954809}
   - component: {fileID: 6407570608627911118}
+  - component: {fileID: 6692807985201443378}
   m_Layer: 16
   m_Name: Hero
   m_TagString: Player
@@ -441,6 +442,21 @@ MonoBehaviour:
   MovementSpeed: 6
   FootstepClips: []
   FootstepInterval: 0.15
+--- !u!114 &6692807985201443378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621055493224660275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41666a73865fbf34b836a8091adccfaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 10000
+  TakeDamageClips: []
+  HealClips: []
 --- !u!1 &7083502480655171153
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +623,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1406047642122840840}
-  - component: {fileID: 8363095518416421682}
   - component: {fileID: 521850358758367920}
   - component: {fileID: 2700954443133636006}
   m_Layer: 16
@@ -625,7 +640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889203517055737670}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25881904, y: -0, z: -0, w: 0.9659259}
+  m_LocalRotation: {x: -0.25881907, y: -0, z: -0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -636,20 +651,6 @@ Transform:
   - {fileID: 1583812333428450812}
   m_Father: {fileID: 1400807245426954809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8363095518416421682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8889203517055737670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41666a73865fbf34b836a8091adccfaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 10000
-  TakeDamageClips: []
 --- !u!82 &521850358758367920
 AudioSource:
   m_ObjectHideFlags: 0
