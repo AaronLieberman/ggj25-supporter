@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8363702627184212698}
   - component: {fileID: 3365910535640992713}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: InteractionCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -90,8 +90,7 @@ GameObject:
   - component: {fileID: 6407570608627911118}
   - component: {fileID: 482069397792103205}
   - component: {fileID: 1636642041807515685}
-  - component: {fileID: 389450726340697573}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -243,33 +242,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!50 &389450726340697573
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6621055493224660275}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &7723723000773525886
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +254,7 @@ GameObject:
   - component: {fileID: 5075984602221128091}
   - component: {fileID: 6464746153109525655}
   - component: {fileID: 3006580176829448928}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: GFX
   m_TagString: Player
   m_Icon: {fileID: 0}
