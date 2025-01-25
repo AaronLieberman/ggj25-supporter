@@ -27,6 +27,7 @@ public class HeroController : MonoBehaviour
     Animator _animator;
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
+    Transform _gfxHolder;
 
     CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
@@ -43,6 +44,7 @@ public class HeroController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
+        _gfxHolder = transform.Find("GFX");
 
         _targetPosition = transform.position;
     }
@@ -57,12 +59,15 @@ public class HeroController : MonoBehaviour
 
     void MoveHero()
     {
-        // Rotate hero based on where they are going.
-        transform.localScale = new Vector3(
-            transform.position.x > _targetPosition.x ? -1 : transform.localScale.x * transform.localScale.x, 
-            transform.localScale.y, 
-            transform.localScale.z
-        );
+        // Rotate hero GFX based on where they are going.
+        if (_gfxHolder)
+        {
+            _gfxHolder.localScale = new Vector3(
+                transform.position.x > _targetPosition.x ? -1 : _gfxHolder.localScale.x * _gfxHolder.localScale.x,
+                _gfxHolder.localScale.y,
+                _gfxHolder.localScale.z
+            );
+        }
 
         // Update hero to move towards target position.
         transform.position = Vector2.MoveTowards(transform.position, _targetPosition, MovementSpeed * Time.deltaTime * Time.timeScale);

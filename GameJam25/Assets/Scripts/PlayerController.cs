@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Utilities.GetRootComponent<HeroController>().WalkTo(new Vector2(transform.position.x, transform.position.y)));
                 }
 
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    EntityResources.Damage(5);
+                }
+
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
 

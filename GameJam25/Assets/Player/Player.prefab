@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 537423616031589092}
   - component: {fileID: 2560068676519394255}
   - component: {fileID: 7867179487269328492}
+  - component: {fileID: 8354469051359165213}
   m_Layer: 5
   m_Name: PlayerCanvas
   m_TagString: Untagged
@@ -72,7 +73,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.5, y: 0.25}
+  m_AnchoredPosition: {x: 0.22, y: 0.25}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &537423616031589092
@@ -138,6 +139,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8354469051359165213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359871675296073932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce316cdaf001df46ab786c2425b71ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityResources: {fileID: 6763019619301674921}
+  HealthSlider: {fileID: 504379690219348172}
 --- !u!1 &4219592620771811224
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6363520422320024751}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25881904, y: -0, z: -0, w: 0.9659259}
+  m_LocalRotation: {x: -0.25881907, y: -0, z: -0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

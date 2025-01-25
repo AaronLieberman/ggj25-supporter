@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class PlayerHPBinding : MonoBehaviour
 {
-    PlayerController _player;
+    [SerializeField] EntityResources EntityResources;
 
     public GameObject HeartPrefab;
 
@@ -14,17 +15,11 @@ public class PlayerHPBinding : MonoBehaviour
 
     private List<HeartSpriteSwitch> hearts = new List<HeartSpriteSwitch>();
 
-    void Awake()
-    {
-        _player = Utilities.GetRootComponent<PlayerController>();
-    }
-
     private void Start()
     {
-        var playerHealth = _player.EntityResources;
-        playerHealth.HealthChanged += UpdateHealth;
+        EntityResources.HealthChanged += (_, __) => UpdateHealth();
 
-        for (int i = 0; i < playerHealth.MaxHealth; i++)
+        for (int i = 0; i < EntityResources.MaxHealth; i++)
         {
             var HeartObj = Instantiate(HeartPrefab, this.transform);
             hearts.Add(HeartObj.GetComponent<HeartSpriteSwitch>());
@@ -32,21 +27,13 @@ public class PlayerHPBinding : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(0 + HeartSize * i, 0);
         }
     }
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            //PlayerResources.Instance.Damage(1);
-        }
-    }
 
     void UpdateHealth()
     {
-        var playerHealth = _player.EntityResources;
-        for (int i = 0; i < playerHealth.MaxHealth; i++)
+        for (int i = 0; i < EntityResources.MaxHealth; i++)
         {
             var heart = hearts[i];
-            heart.Filled = (i + 1) <= playerHealth.Health;
+            heart.Filled = (i + 1) <= EntityResources.Health;
         }
     }
 }

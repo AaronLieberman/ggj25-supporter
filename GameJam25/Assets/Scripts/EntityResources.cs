@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class EntityResources : MonoBehaviour
         set
         {
             _health = Mathf.Clamp(value, 0, MaxHealth);
-            HealthChanged?.Invoke();
+
+            HealthChanged?.Invoke(this, null);
             if (_health <= 0)
             {
                 Death?.Invoke();
@@ -23,7 +25,7 @@ public class EntityResources : MonoBehaviour
         }
     }
 
-    public UnityAction HealthChanged;
+    public event EventHandler HealthChanged;
     public UnityAction Death;
 
     [SerializeField] List<AudioClip> TakeDamageClips;
@@ -42,6 +44,6 @@ public class EntityResources : MonoBehaviour
     public void Damage(int amount=1)
     {
         Health -= amount;
-        _audioSource.PlayOneShot(TakeDamageClips[Random.Range(0, TakeDamageClips.Count - 1)]);
+        _audioSource.PlayOneShot(TakeDamageClips[UnityEngine.Random.Range(0, TakeDamageClips.Count - 1)]);
     }
 }
