@@ -30,7 +30,7 @@ public class PhaseManager : MonoBehaviour
     void Awake()
     {
         _introfade = Utilities.GetRootComponent<IntroFade>();
-        _camera = Utilities.GetRootComponent<CameraController>();
+        _camera = Utilities.GetRootComponentRecursive<CameraController>();
         _hero = Utilities.GetRootComponent<HeroController>();
         _player = Utilities.GetRootComponent<PlayerController>();
         _boss = Utilities.GetRootComponent<BossController>();
