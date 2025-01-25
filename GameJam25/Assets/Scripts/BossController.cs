@@ -18,4 +18,11 @@ public class BossController : MonoBehaviour
         Debug.Log("Boss says: \"" + v + "\"");
         yield return Utilities.WaitForSeconds(seconds);
     }
+    public void StartShooters()
+    {
+        Debug.Log("Activating all children of boss");
+
+        //TODO: This turns on everything, not just shooters
+        gameObject.SetActiveRecursively(true);
+    }
 }

@@ -5,7 +5,13 @@ public enum PhaseSkipTo
 {
     None,
     StartCinematic,
-    StartOfControl
+    StartOfControl,
+    Phase1,
+    Phase2,
+    Phase3,
+    Phase4,
+    Phase5,
+    Victory,
 }
 
 public class PhaseManager : MonoBehaviour
@@ -20,6 +26,8 @@ public class PhaseManager : MonoBehaviour
 
     // should have a DivingGear and a Throwable on it
     public DivingGear DivingGearPrefab;
+
+    public BossController Boss;
 
     void Awake()
     {
@@ -103,6 +111,10 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase1()
     {
+
+        if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
+
+        Boss.StartShooters();
         yield return null;
     }
 }
