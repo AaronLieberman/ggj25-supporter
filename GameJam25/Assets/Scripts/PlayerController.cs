@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 _playerState = PlayerState.Dashing;
 
                 _audioSource.PlayOneShot(DashClips[Random.Range(0, DashClips.Count - 1)]);
-                _rigidBody.AddForce(new Vector2(DashSpeed * horizontal, DashSpeed * vertical), ForceMode2D.Impulse);
+                _rigidBody.AddForce(new Vector2(DashSpeed * horizontal, (DashSpeed * vertical) * 0.5f), ForceMode2D.Impulse);
             }
             else if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
             {
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             {
                 case PlayerState.Idle:
                 case PlayerState.Running:
-                    _rigidBody.linearVelocity = new Vector2(horizontal * MovementSpeed, vertical * MovementSpeed);
+                    _rigidBody.linearVelocity = new Vector2(horizontal * MovementSpeed, (vertical * MovementSpeed) * 0.5f);
                     break;
             }
         }
