@@ -31,6 +31,7 @@ public class DialogBubbleController : MonoBehaviour
     public IEnumerator PopDialog(string dialogKey)
     {
         startTime = Time.time;
+        //TODO: We need to actually select the dialog from a table, instead of printing the key
         dialogText.text = dialogKey;
         return Utilities.WaitForSeconds(SpawnDuration + Duration + DespawnDuration);
     }
