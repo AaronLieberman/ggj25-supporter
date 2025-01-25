@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    enum MovementState { Idle, Running, Jumping, Falling, Dashing, Channelling }
+    public static PlayerController _instance;
+    public static PlayerController Instance => _instance;
 
-    [SerializeField] float JumpSpeed = 14;
+    [HideInInspector] public EntityResources EntityResources;
+
+    enum PlayerState { Idle, Running, Dashing }
+
     [SerializeField] float MovementSpeed = 6;
     [SerializeField] float DashSpeed = 16;
-    [SerializeField] float GravityScale = 3;
 
-    [SerializeField] LayerMask JumpableGround = 3;
+    PlayerState _playerState = PlayerState.Idle;
 
-    MovementState _state = MovementState.Idle;
-    bool _usedDoubleJump = false;
-    bool _wasOnGround = false; // Used to track if we should play the landing sfx
-
-    [SerializeField] AudioClip JumpClip;
-    [SerializeField] AudioClip LandClip;
     [SerializeField] List<AudioClip> DashClips;
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
@@ -30,19 +27,17 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D _boxCollider;
     AudioSource _audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
+        EntityResources = GetComponent<EntityResources>();
+
         _rigidBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
-
-        Camera.main.GetComponent<CameraController>().Player = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var damageHandler = GetComponentInChildren<PlayerDamageHandler>();
@@ -66,101 +61,51 @@ public class PlayerController : MonoBehaviour
             );
         }
 
-        // totally unnescessary to set this in code but simplifies setup for the time being
-        _rigidBody.gravityScale = GravityScale;
-
-        if (PlayerResources.Instance.isAlive && _state != MovementState.Dashing)
+        if (EntityResources.isAlive && _playerState != PlayerState.Dashing)
         {
-            float h = Input.GetAxisRaw("Horizontal");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
-            if (h != 0)
+            if (horizontal != 0)
             {
-                _spriteRenderer.flipX = h < 0;
+                _spriteRenderer.flipX = horizontal < 0;
             }
-
-            bool isOnGround = IsOnGround();
-
-            if (isOnGround && !_wasOnGround)
-            {
-                _audioSource.PlayOneShot(LandClip);
-            }
-
-            _wasOnGround = isOnGround;
 
             // some states are persistent until they complete, otherwise, default to idle unless we have a better
             // state to be in
-            switch (_state)
+            switch (_playerState)
             {
-                case MovementState.Dashing:
+                case PlayerState.Dashing:
                     break;
                 default:
-                    _state = MovementState.Idle;
+                    _playerState = PlayerState.Idle;
                     break;
             }
 
-            if (Input.GetButton("Activate") && isOnGround)
+            if (Input.GetButtonDown("Dash"))
             {
-                _state = MovementState.Channelling;
-            }
-            else if (Input.GetButtonDown("Jump") && (isOnGround || !_usedDoubleJump))
-            {
-                if (isOnGround)
-                {
-                    _audioSource.PlayOneShot(JumpClip);
-                    _rigidBody.linearVelocity = new Vector3(_rigidBody.linearVelocity.x, JumpSpeed);
-                }
-                else
-                {
-                    _audioSource.PlayOneShot(DashClips[Random.Range(0,DashClips.Count-1)]);
-                    _usedDoubleJump = true;
-                    _rigidBody.linearVelocity = new Vector3(
-                        _rigidBody.linearVelocity.x + (_spriteRenderer.flipX ? -DashSpeed : DashSpeed),
-                        _rigidBody.linearVelocity.y);
-                    _state = MovementState.Dashing;
-                }
-            }
-            else if (Mathf.Abs(h) > 0.1f)
-            {
-                _state = MovementState.Running;
+                _playerState = PlayerState.Dashing;
 
-                if (isOnGround)
-                {
-                    PlayFootsteps();
-                }
+                _audioSource.PlayOneShot(DashClips[Random.Range(0, DashClips.Count - 1)]);
+                _rigidBody.AddForce(new Vector2(DashSpeed * horizontal, DashSpeed * vertical), ForceMode2D.Impulse);
+            }
+            else if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
+            {
+                _playerState = PlayerState.Running;
+
+                PlayFootsteps();
             }
 
-            if (_state != MovementState.Dashing)
+            switch (_playerState)
             {
-                if (_rigidBody.linearVelocity.y > 0.1f)
-                {
-                    _state = MovementState.Jumping;
-                }
-                else if (_rigidBody.linearVelocity.y < -0.1f)
-                {
-                    _state = MovementState.Falling;
-                }
-            }
-
-            switch (_state)
-            {
-                case MovementState.Idle:
-                case MovementState.Jumping:
-                case MovementState.Running:
-                case MovementState.Falling:
-                    _rigidBody.linearVelocity = new Vector3(h * MovementSpeed, _rigidBody.linearVelocity.y);
+                case PlayerState.Idle:
+                case PlayerState.Running:
+                    _rigidBody.linearVelocity = new Vector2(horizontal * MovementSpeed, vertical * MovementSpeed);
                     break;
-                case MovementState.Channelling:
-                    _rigidBody.linearVelocity = new Vector3(0, _rigidBody.linearVelocity.y);
-                    break;
-            }
-
-            if (isOnGround)
-            {
-                _usedDoubleJump = false;
             }
         }
 
-        _animator.SetInteger("state", (int)_state);
+        _animator.SetInteger("state", (int)_playerState);
     }
 
     void PlayFootsteps()
@@ -173,13 +118,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool IsOnGround()
-    {
-        return Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0, Vector2.down, 0.1f, JumpableGround);
-    }
-
     public void DashComplete()
     {
-        _state = MovementState.Falling;
+        _playerState = PlayerState.Idle;
+        _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 }

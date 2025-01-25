@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDamageHandler : MonoBehaviour
 {
     [SerializeField]
-    private PlayerResources playerResources;
+    private EntityResources playerResources;
     [SerializeField]
     private List<string> interactionTags;
     [SerializeField]

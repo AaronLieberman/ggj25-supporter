@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerResources : MonoBehaviour
+public class EntityResources : MonoBehaviour
 {
-    public static PlayerResources _instance;
-    public static PlayerResources Instance => _instance;
+    public static EntityResources _instance;
+    public static EntityResources Instance => _instance;
  
     public bool isAlive => _health > 0;
 

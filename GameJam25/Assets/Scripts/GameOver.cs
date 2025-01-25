@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
     {
         _canvas.enabled = false;
 
-        PlayerResources.Instance.Death += ShowGameOver;
+        PlayerController.Instance.EntityResources.Death += ShowGameOver;
     }
 
     public void ShowGameOver()

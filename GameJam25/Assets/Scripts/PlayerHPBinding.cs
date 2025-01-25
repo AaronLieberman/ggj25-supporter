@@ -13,7 +13,7 @@ public class PlayerHPBinding : MonoBehaviour
 
     private void Start()
     {
-        var playerHealth = PlayerResources.Instance;
+        var playerHealth = PlayerController.Instance.EntityResources;
         playerHealth.HealthChanged += UpdateHealth;
 
         for (int i = 0; i < playerHealth.MaxHealth; i++)
@@ -34,7 +34,7 @@ public class PlayerHPBinding : MonoBehaviour
 
     void UpdateHealth()
     {
-        var playerHealth = PlayerResources.Instance;
+        var playerHealth = PlayerController.Instance.EntityResources;
         for (int i = 0; i < playerHealth.MaxHealth; i++)
         {
             var heart = hearts[i];
