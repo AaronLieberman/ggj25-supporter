@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DialogBubble_0: 6272214129023382155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
