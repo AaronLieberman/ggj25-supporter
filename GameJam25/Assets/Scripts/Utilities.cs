@@ -87,4 +87,14 @@ public static class Utilities
 	{
 		yield return new WaitForSeconds(seconds / Time.timeScale);
 	}
+
+    public static int IncrementIndex(int currentIndex, int indexMax)
+    {
+        int newIndex = currentIndex + 1;
+        if (currentIndex > indexMax)
+        {
+            newIndex = 0;
+        }
+        return newIndex;
+    }
 }

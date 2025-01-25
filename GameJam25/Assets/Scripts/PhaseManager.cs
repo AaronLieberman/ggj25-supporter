@@ -29,12 +29,18 @@ public class PhaseManager : MonoBehaviour
         _player = Utilities.GetRootComponent<PlayerController>();
         _boss = Utilities.GetRootComponent<BossController>();
 
-        StartCoroutine(Phase0());
+        StartCoroutine(RunGame());
     }
 
     void Update()
     {
         
+    }
+
+    IEnumerator RunGame()
+    {
+        yield return Phase0();
+        yield return Phase1();
     }
 
     IEnumerator Phase0()
@@ -91,5 +97,12 @@ public class PhaseManager : MonoBehaviour
                 
         // Hero dialog bubble: 
         yield return _hero.Say("That thing was messing up my hair anyway.", 3);
+
+
+    }
+
+    IEnumerator Phase1()
+    {
+        yield return null;
     }
 }
