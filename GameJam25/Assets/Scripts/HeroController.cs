@@ -55,6 +55,28 @@ public class HeroController : MonoBehaviour
 
     void Update()
     {
+        var damageHandler = GetComponentInChildren<EntityDamageHandler>();
+        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        bool isInHurtState = damageHandler != null && damageHandler.InHurtState;
+
+        if (isInHurtState)
+        {
+            spriteRenderer.color = new Color(
+                1,
+                Mathf.PingPong(Time.time * 3, 1),
+                Mathf.PingPong(Time.time * 3, 1)
+            );
+        }
+        else
+        {
+            spriteRenderer.color = new Color(
+                1,
+                1,
+                1
+            );
+        }
+
         if (Math.Abs(Vector2.Distance(transform.position, _targetPosition)) > _minTargetDistanceThreshold)
         {
             MoveHero();

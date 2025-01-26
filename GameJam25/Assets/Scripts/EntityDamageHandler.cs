@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDamageHandler : MonoBehaviour
+public class EntityDamageHandler : MonoBehaviour
 {
     [SerializeField]
     private List<string> interactionTags;
     [SerializeField]
+    private int damageAmount = 1;
+    [SerializeField]
     private float damageCooldown = 5f;
     private float timeSinceLastDamage;
     private bool damageable = false;
-    EntityResources playerResources;
+    EntityResources entityResources;
 
     public bool InHurtState { get; private set; }
 
     void AttachPlayerResources()
     {
-        playerResources = Utilities.GetRootComponent<PlayerController>().GetComponent<EntityResources>();
+        entityResources = transform.parent.parent.GetComponent<EntityResources>();
     }
 
     private void Start()
@@ -26,7 +28,7 @@ public class PlayerDamageHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!playerResources)
+        if (!entityResources)
         {
             AttachPlayerResources();
         }
@@ -34,7 +36,7 @@ public class PlayerDamageHandler : MonoBehaviour
         if (damageable && timeSinceLastDamage <= Time.time)
         {
             StartCoroutine(ApplyHurt());
-            playerResources.Damage();
+            entityResources.Damage(damageAmount);
             timeSinceLastDamage = Time.time + damageCooldown;
         }
     }

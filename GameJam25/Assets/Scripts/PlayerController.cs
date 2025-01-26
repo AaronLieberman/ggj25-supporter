@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        var damageHandler = GetComponentInChildren<PlayerDamageHandler>();
+        var damageHandler = GetComponentInChildren<EntityDamageHandler>();
         var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         bool isInHurtState = damageHandler != null && damageHandler.InHurtState;
