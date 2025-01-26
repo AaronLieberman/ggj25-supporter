@@ -9,9 +9,9 @@ public class CameraController : MonoBehaviour
     public Transform Player;
 
     [SerializeField] float PlayerOffset = 4;
+    [SerializeField] float ShakeAmount = 1;
 
-    bool _firstFrame = true;
-    float _initialY;
+    float _shakeSecondsRemaining;
 
     public void Follow(GameObject o)
     {
@@ -21,8 +21,9 @@ public class CameraController : MonoBehaviour
 
     public IEnumerator Shake(float seconds)
     {
+        _shakeSecondsRemaining = seconds;
         Debug.Log("Camera shake");
-        yield return Utilities.WaitForSeconds(seconds);
+        yield return new WaitWhile(() => _shakeSecondsRemaining > 0);
     }
 
     private void Start()
@@ -32,19 +33,15 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        // do this the first frame because otherwise Player may not have been initialized yet
-        if (Player)
+        if (_shakeSecondsRemaining > 0)
         {
-            if (_firstFrame)
+            transform.parent.localPosition = UnityEngine.Random.insideUnitSphere * ShakeAmount;
+            _shakeSecondsRemaining -= Time.deltaTime * Time.timeScale;
+            if (_shakeSecondsRemaining <= 0)
             {
-                _initialY = Player.transform.position.y;
-                _firstFrame = false;
+                transform.parent.localPosition = new Vector3();
+                _shakeSecondsRemaining = 0;
             }
-
-            transform.position = new Vector3(
-                Player.transform.position.x,
-                _initialY + (Player.transform.position.y + PlayerOffset - _initialY) / 2,
-                Player.transform.position.z - 10);
         }
     }
 }

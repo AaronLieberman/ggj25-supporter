@@ -770,10 +770,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 5541363317675288416, guid: ed22100b03f3bcb4d9ee1012c6da3753, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -52.39
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

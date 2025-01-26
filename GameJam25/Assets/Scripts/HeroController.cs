@@ -103,7 +103,7 @@ public class HeroController : MonoBehaviour
             // Update hero to move towards target position.
             var speed = _movementType == MovementType.Walking ? WalkingSpeed : FloatingSpeed;
             var distance = speed * Time.deltaTime * Time.timeScale;
-            Debug.Log("Move distance " + distance);
+            //Debug.Log("Move distance " + distance);
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, distance);
         }
     }
@@ -140,7 +140,7 @@ public class HeroController : MonoBehaviour
 
     bool IsCloseToTarget()
     {
-        Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + Vector3.Distance(transform.position, _targetPosition));
+        //Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + Vector3.Distance(transform.position, _targetPosition));
         return Vector3.Distance(transform.position, _targetPosition) < _minTargetDistanceThreshold;
     }
 

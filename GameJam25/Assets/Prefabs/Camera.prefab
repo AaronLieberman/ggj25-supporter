@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   PlayerOffset: 4.5
+  ShakeAmount: 1
 --- !u!114 &4994115161656340552
 MonoBehaviour:
   m_ObjectHideFlags: 0
