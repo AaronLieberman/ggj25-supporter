@@ -41,22 +41,9 @@ public class PlayerController : MonoBehaviour
         var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         bool isInHurtState = damageHandler != null && damageHandler.InHurtState;
-
-        if (isInHurtState)
-        {
-            spriteRenderer.color = new Color(
-                1,
-                Mathf.PingPong(Time.time * 3, 1),
-                Mathf.PingPong(Time.time * 3, 1)
-            );
-        } else
-        {
-            spriteRenderer.color = new Color(
-                1,
-                1,
-                1
-            );
-        }
+        spriteRenderer.color = isInHurtState
+            ? new Color(1, Mathf.PingPong(Time.time * 3, 1), Mathf.PingPong(Time.time * 3, 1))
+            : new Color(1, 1, 1);
 
         if (EntityResources.isAlive && _playerState != PlayerState.Dashing)
         {
@@ -75,7 +62,9 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    StartCoroutine(Utilities.GetRootComponent<HeroController>().WalkTo(new Vector2(transform.position.x, transform.position.y)));
+                    StartCoroutine(Utilities.GetRootComponent<HeroController>()
+                        .GetComponent<ControlledMover>()
+                        .WalkTo(new Vector2(transform.position.x, transform.position.y)));
                 }
 
                 if (Input.GetKeyDown(KeyCode.R))
@@ -129,7 +118,7 @@ public class PlayerController : MonoBehaviour
         if (_footstepTimer >= FootstepInterval)
         {
             _footstepTimer = 0f;
-            _audioSource.PlayOneShot(FootstepClips[Random.Range(0, FootstepClips.Count - 1)],0.5f);
+            _audioSource.PlayOneShot(FootstepClips[Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
     }
 
@@ -139,23 +128,10 @@ public class PlayerController : MonoBehaviour
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 
-    public void SnapTo(Vector3 targetPos)
-    {
-        Debug.Log("Player snapped");
-
-        transform.position = targetPos;
-    }
-
-    public IEnumerator FloatTo(float x, float y, float seconds)
-    {
-        Debug.Log("Player floating down");
-        yield return Utilities.WaitForSeconds(seconds);
-        Debug.Log("Player landed");
-    }
-
     public void SetControlsEnabled(bool v)
     {
         Debug.Log(v ? "Player controls enabled" : "Player controls disabled");
         _controlsEnabled = v;
+        GetComponent<ControlledMover>().enabled = !v;
     }
 }

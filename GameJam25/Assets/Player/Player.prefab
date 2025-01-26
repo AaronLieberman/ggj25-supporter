@@ -286,7 +286,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7045456979011919915}
   - component: {fileID: 6271238440188782650}
-  - component: {fileID: 6611342473185020824}
   m_Layer: 13
   m_Name: InteractionCollider
   m_TagString: Player
@@ -355,22 +354,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.19, y: 1.75}
   m_EdgeRadius: 0
---- !u!114 &6611342473185020824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2915998422378586947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionTags:
-  - Enemy
-  damageAmount: 10
-  damageCooldown: 0.75
 --- !u!1 &4180244498635541423
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4489609810463111394}
   - component: {fileID: 3488434772372351773}
+  - component: {fileID: 277912722556261308}
   - component: {fileID: 2620211312045190589}
   - component: {fileID: 1130637771114088941}
   - component: {fileID: 5562448391826765103}
@@ -520,6 +504,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f9701de2e8a8ac748a0632d82741b92b, type: 3}
   - {fileID: 8300000, guid: 60a3c6b631a2df54b94238cce5c14899, type: 3}
   FootstepInterval: 0.22
+--- !u!114 &277912722556261308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489609810463111392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b738633aa6fc143a8ed157e8711304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2620211312045190589
 MonoBehaviour:
   m_ObjectHideFlags: 0

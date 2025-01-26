@@ -19,7 +19,9 @@ public class PhaseManager : MonoBehaviour
     IntroFade _introfade;
     CameraController _camera;
     HeroController _hero;
+    ControlledMover _heroMover;
     PlayerController _player;
+    ControlledMover _playerMover;
     BossController _boss;
 
     public PhaseSkipTo SkipTo;
@@ -32,7 +34,9 @@ public class PhaseManager : MonoBehaviour
         _introfade = Utilities.GetRootComponent<IntroFade>();
         _camera = Utilities.GetRootComponentRecursive<CameraController>();
         _hero = Utilities.GetRootComponent<HeroController>();
+        _heroMover = _hero.GetComponent<ControlledMover>();
         _player = Utilities.GetRootComponent<PlayerController>();
+        _playerMover = _hero.GetComponent<ControlledMover>();
         _boss = Utilities.GetRootComponent<BossController>();
 
         StartCoroutine(RunGame());
@@ -51,8 +55,8 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase0()
     {
-        _hero.SnapTo(new Vector3(-55, 0, -32));
-        _player.SnapTo(new Vector3(-65, 0, -32));
+        _heroMover.SnapTo(new Vector3(-55, 0, -32));
+        _playerMover.SnapTo(new Vector3(-65, 0, -32));
 
         if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
 
@@ -66,18 +70,18 @@ public class PhaseManager : MonoBehaviour
         // Sandy underwater background, basically the same left to right.
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
-        yield return _hero.FloatTo(new Vector3(-55, 0, 0));
+        yield return _heroMover.FloatTo(new Vector3(-55, 0, 0));
         _camera.Follow(_hero.gameObject);
         
         // Player character floats down from the top center
-        var playerFloat = _player.FloatTo(-65, 1, 3);
+        var playerFloat = _playerMover.FloatTo(-65, 1, 3);
         //TODO: This is placeholder until the camera follow works
         _player.SnapTo(new Vector2(4.38f, 0.0f));
 
         yield return Utilities.WaitForSeconds(1);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = _hero.WalkTo(new Vector2(4.38f, 0.0f));
+        var heroWalk = _heroMover.WalkTo(new Vector2(4.38f, 0.0f));
 
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
@@ -128,7 +132,7 @@ public class PhaseManager : MonoBehaviour
 
         // The Hero begins shooting his machine gun continuously.It fires bullets randomly in a 15 degree cone straight forward.
         // About 3 a second.
-        _hero.startShootingMachineGun();
+        _hero.StartShootingMachineGun();
 
 
         // 10 seconds after the start of the phase the Hero says "Breathing water isn't as easy as I thought it would be."
