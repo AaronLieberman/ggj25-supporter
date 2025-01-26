@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class DialogBubbleController : MonoBehaviour
 {
-    [SerializeField] bool FlipBubble = false;
     [SerializeField] AnimationCurve SpawnCurve = new AnimationCurve();
     [SerializeField] float SpawnDuration = 1;
     [SerializeField] AnimationCurve DespawnCurve = new AnimationCurve();

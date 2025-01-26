@@ -1215,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4581448774636476276, guid: 8ec721d2ce8c29240af9e72f90b1531d, type: 3}
       propertyPath: m_Name
-      value: DialogBubble
+      value: DialogBubbleLeft
       objectReference: {fileID: 0}
     - target: {fileID: 6920292580448293696, guid: 8ec721d2ce8c29240af9e72f90b1531d, type: 3}
       propertyPath: m_SortingLayer
