@@ -81,7 +81,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &32080125439448086
 Rigidbody2D:
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c61f4048b08fc4d89fc76ae02d2f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageAmount: 10
+  DestroyOnContact: 1
 --- !u!1 &1001791407658054359
 GameObject:
   m_ObjectHideFlags: 0

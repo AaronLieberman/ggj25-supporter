@@ -15,7 +15,7 @@ public class EntityDamageHandler : MonoBehaviour
 
     void AttachEntityResources()
     {
-        _entityResources = transform.parent.parent.GetComponent<EntityResources>();
+        _entityResources = GetComponent<EntityResources>();
     }
 
     private void Start()
@@ -33,7 +33,14 @@ public class EntityDamageHandler : MonoBehaviour
         if (_damagers.Count > 0 && _timeSinceLastDamage <= Time.time)
         {
             StartCoroutine(ApplyHurt());
+
             _entityResources.Damage((int)_damagers.Sum(d => d.DamageAmount));
+            
+            foreach (var damager in _damagers.Where(d => d.DestroyOnContact))
+            {
+                Destroy(damager.gameObject);
+            }
+
             _timeSinceLastDamage = Time.time + damageCooldown;
         }
     }

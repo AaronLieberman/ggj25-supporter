@@ -6,6 +6,7 @@ public class Carriable : MonoBehaviour
 {
     [SerializeField] private List<string> interactionTags;
     [SerializeField] private float dropWait = 1.0f;
+
     private float lastDropTime;
     [HideInInspector] public bool BeingCarried;
 
@@ -34,10 +35,19 @@ public class Carriable : MonoBehaviour
     {
         if (BeingCarried) { return; }
 
-        if (carrierTransform.GetComponentInChildren<Carriable>()) { return; }
+        if (carrierTransform.GetComponentInChildren<Carriable>()) return;
+
+        var carryOffset = new Vector3(1, 0, 0);
+
+        var carryHolder = carrierTransform.GetComponentInChildren<CarryHolder>();
+        if (carryHolder != null)
+        {
+            carrierTransform = carryHolder.transform;
+            carryOffset = carryHolder.CarryOffset;
+        }
 
         transform.SetParent(carrierTransform);
-        transform.localPosition = new Vector3(1.0f, 0.0f, 0.0f);
+        transform.localPosition = carryOffset;
         BeingCarried = true;
     }
 
