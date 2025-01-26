@@ -36,6 +36,8 @@ public class HeroController : MonoBehaviour
 
     bool _isDivingGearEquipped = false;
 
+    private float lastSpeech;
+
     void Start()
     {
         EntityResources = GetComponent<EntityResources>();
@@ -136,6 +138,7 @@ public class HeroController : MonoBehaviour
 
     public IEnumerator Say(string v)
     {
+        lastSpeech = Time.time;
         Debug.Log("Hero says: \"" + v + "\"");
         return _dialogBubble.PopDialog(v);
     }
@@ -146,8 +149,29 @@ public class HeroController : MonoBehaviour
         yield return Utilities.WaitForSeconds(1);
     }
 
+    public IEnumerator Brag()
+    {
+        yield return Utilities.WaitForSeconds(1);
+        if (Time.time > lastSpeech + 10) 
+        { 
+            Say("Hero_Brag");
+        }
+    }
+
     public void SetDivingGear(bool v)
     {
         _isDivingGearEquipped = v;
+    }
+
+    public void startShootingMachineGun()
+    {
+        Debug.Log("TODO: Hero starts shooting machine gun);
+
+        return;
+    }
+
+    internal void StartBragging()
+    {
+        StartCoroutine()
     }
 }
