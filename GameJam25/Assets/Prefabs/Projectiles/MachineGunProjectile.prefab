@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7898265798416357435}
   - component: {fileID: 32080125439448086}
   - component: {fileID: 7008845859883150259}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: MachineGunProjectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35111c3d5197e0741b29827bc3171cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 10
   MaxLifetime: 10
   Direction: {x: 0, y: 0, z: 0}
 --- !u!61 &7898265798416357435
@@ -67,7 +67,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 854016
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageAmount: 10
+  DamageBasedOnMaxHealth: 0
+  DamageBasedOnMaxHealthScalar: 1
   DestroyOnContact: 1
 --- !u!1 &1001791407658054359
 GameObject:
@@ -147,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8693880326627469743}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,8 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1037700845834979673}
   - component: {fileID: 6261955578530387890}
-  - component: {fileID: 6478666696143495761}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +247,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -304377885
   m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: -1048973163, guid: 19f520b1b92be6346880e6380be8b6bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -258,25 +259,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6478666696143495761
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8768116061598836594}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc27eea9da721fe4f849e1c0ef447bca, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

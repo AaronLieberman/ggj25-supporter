@@ -97,9 +97,13 @@ public class HeroController : MonoBehaviour
         _isDivingGearEquipped = v;
     }
 
-    public void StartShootingMachineGun()
+    public void SetMachineGunActive(bool v)
     {
         Debug.Log("TODO: Hero starts shooting machine gun");
+        //TODO ugh
+        var machineGun = transform.Find("Root").Find("MachineGun");
+        if (machineGun)
+            machineGun.gameObject.SetActive(v);
     }
 
     internal void StartBragging()

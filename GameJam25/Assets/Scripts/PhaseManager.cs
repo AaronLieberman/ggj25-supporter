@@ -149,7 +149,7 @@ public class PhaseManager : MonoBehaviour
 
         // The Hero begins shooting his machine gun continuously.It fires bullets randomly in a 15 degree cone straight forward.
         // About 3 a second.
-        _hero.StartShootingMachineGun();
+        _hero.SetMachineGunActive(true);
 
         // 10 seconds after the start of the phase the Hero says "Breathing water isn't as easy as I thought it would be."
         yield return Utilities.WaitForSeconds(10.0f);
