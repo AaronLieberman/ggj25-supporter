@@ -25,7 +25,7 @@ public class PeriodicSpawner : MonoBehaviour
         if (SpawnPrefab == null || SpawnPosition == null || !_enabled)
             return;
 
-        if (Time.time - _lastSpawn > RateInSeconds / Time.timeScale)
+        if (Time.time - _lastSpawn > RateInSeconds)
         {
             Instantiate(SpawnPrefab, SpawnPosition);
             _lastSpawn = Time.time;

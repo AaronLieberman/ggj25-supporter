@@ -47,4 +47,6 @@ MonoBehaviour:
   ShotsPerSecond: 3
   Projectiles:
   - {fileID: 32080125439448090, guid: be521cd4134e5024384c896f9eeb49a1, type: 3}
-  shootImmediately: 1
+  ShootImmediately: 1
+  ShootDirection: {x: -1, y: 0, z: 0}
+  ShootConeDegrees: 40

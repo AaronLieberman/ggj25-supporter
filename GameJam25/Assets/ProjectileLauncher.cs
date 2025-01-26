@@ -5,44 +5,45 @@ using static Unity.Collections.AllocatorManager;
 
 public class ProjectileLauncher : MonoBehaviour
 {
+    public float ShotsPerSecond;
+    public List<GameObject> Projectiles = new();
+    public bool ShootImmediately = true;
+    public Vector3 ShootDirection;
+    public float ShootConeDegrees;
 
-    [SerializeField] private float ShotsPerSecond;
-    [SerializeField] private List<GameObject> Projectiles = new List<GameObject>();
-    [SerializeField] private bool shootImmediately = true;
+    float _timeLastShot;
+    int _lastProjIndex = 0;
 
-    private float timeSinceLastShot;
-    private int lastProjIndex = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (shootImmediately)
-        {
-            timeSinceLastShot = float.MaxValue;
-        }
-        else
-        {
-            timeSinceLastShot = 0;
-        }
+        _timeLastShot = ShootImmediately ? 0 : Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timeSinceLastShot += Time.deltaTime;
-        if(timeSinceLastShot > (1 / ShotsPerSecond ))
+        if (Time.time - _timeLastShot > 1 / ShotsPerSecond)
         {
             Shoot();
-            timeSinceLastShot = 0;
+            _timeLastShot = Time.time;
         }
     }
 
     private void Shoot()
     {
-        lastProjIndex = Utilities.IncrementIndex(lastProjIndex, Projectiles.Count - 1);
+        _lastProjIndex = (_lastProjIndex + 1) % Projectiles.Count;
 
-        GameObject thisProj = Projectiles[lastProjIndex % Projectiles.Count];
-        Instantiate(thisProj, transform.position, Quaternion.identity);
+        GameObject thisProj = Projectiles[_lastProjIndex];
+        var go = Instantiate(thisProj, transform.position, Quaternion.identity);
+        if (ShootDirection.sqrMagnitude > 0.0001f)
+        {
+            var projectileMovement = go.GetComponent<ProjectileMovement>();
+            if (projectileMovement != null)
+            {
+                float randomAngle = Random.Range(-ShootConeDegrees / 2, ShootConeDegrees / 2);
+                Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
+                Vector3 randomDirection = rotation * ShootDirection;
+                projectileMovement.GoInDirection(randomDirection);
+            }
+        }
     }
-
-
 }

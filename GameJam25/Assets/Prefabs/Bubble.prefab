@@ -80,10 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35111c3d5197e0741b29827bc3171cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovePerSecond: {x: -0.1, y: 1, z: 0}
-  RandomSpreadInHalfDegrees: 0
+  Speed: 1
   MaxLifetime: 20
-  startTime: 0
+  Direction: {x: -0.1, y: 1, z: 0}
 --- !u!114 &9160189122519968640
 MonoBehaviour:
   m_ObjectHideFlags: 0

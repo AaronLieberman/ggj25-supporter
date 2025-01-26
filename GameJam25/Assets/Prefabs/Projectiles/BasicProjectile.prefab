@@ -145,10 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35111c3d5197e0741b29827bc3171cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovePerSecond: {x: -5, y: 0, z: 0}
-  RandomSpreadInHalfDegrees: 10
+  Speed: 5
   MaxLifetime: 10
-  startTime: 0
+  Direction: {x: 0, y: 0, z: 0}
 --- !u!61 &7898265798416357435
 BoxCollider2D:
   m_ObjectHideFlags: 0
