@@ -30,16 +30,6 @@ public class ControlledMover : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _targetPosition) > _minTargetDistanceThreshold)
         {
-            // Rotate GFX based on where they are going.
-            if (_gfxHolder)
-            {
-                _gfxHolder.localScale = new(
-                    _gfxHolder.position.x > _targetPosition.x ? -1 : _gfxHolder.localScale.x * _gfxHolder.localScale.x,
-                    _gfxHolder.localScale.y,
-                    _gfxHolder.localScale.z
-                );
-            }
-
             if (_movementType != MovementType.None)
             {
                 // Update object to move towards target position.

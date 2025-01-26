@@ -26,6 +26,7 @@ public class PhaseManager : MonoBehaviour
     BossController _boss;
 
     public PhaseSkipTo SkipTo;
+    public bool Invincible;
 
     // should have a DivingGear and a Throwable on it
     public GameObject DivingGearPrefab;

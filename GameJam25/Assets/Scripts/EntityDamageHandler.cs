@@ -34,11 +34,9 @@ public class EntityDamageHandler : MonoBehaviour
         {
             StartCoroutine(ApplyHurt());
 
-            var damagers = _damagers;
-            _entityResources.Damage((int)damagers.Sum(d => d.DamageAmount));
+            _entityResources.Damage((int)_damagers.Sum(d => d.DamageAmount));
 
-            var damagersToDestroy = damagers.Where(d => d.DestroyOnContact).ToList();
-            foreach (var damager in damagersToDestroy)
+            foreach (var damager in _damagers.Where(d => d.DestroyOnContact).ToList())
             {
                 Destroy(damager.gameObject);
                 _damagers.Remove(damager);

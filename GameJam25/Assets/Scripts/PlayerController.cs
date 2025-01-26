@@ -82,15 +82,6 @@ public class PlayerController : MonoBehaviour
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
 
-                if (horizontal != 0)
-                {
-                    _spriteRenderer.flipX = horizontal < 0;
-                    if (damageHandler)
-                    {
-                        damageHandler.transform.localScale = new Vector3(horizontal < 0 ? -1.0f : 1.0f, damageHandler.transform.localScale.y, damageHandler.transform.localScale.z);
-                    }
-                }
-
                 if (Input.GetButtonDown("Dash"))
                 {
                     _playerState = PlayerState.Dashing;
