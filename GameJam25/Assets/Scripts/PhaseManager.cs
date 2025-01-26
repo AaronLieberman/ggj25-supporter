@@ -36,7 +36,7 @@ public class PhaseManager : MonoBehaviour
         _hero = Utilities.GetRootComponent<HeroController>();
         _heroMover = _hero.GetComponent<ControlledMover>();
         _player = Utilities.GetRootComponent<PlayerController>();
-        _playerMover = _hero.GetComponent<ControlledMover>();
+        _playerMover = _player.GetComponent<ControlledMover>();
         _boss = Utilities.GetRootComponent<BossController>();
 
         StartCoroutine(RunGame());
@@ -55,8 +55,8 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase0()
     {
-        _heroMover.SnapTo(new Vector3(-69, 0, -32));
-        _playerMover.SnapTo(new Vector3(-65, 0, -32));
+        _heroMover.SnapTo(new Vector3(-65, 0, -32));
+        _playerMover.SnapTo(new Vector3(-70, 0, -32));
 
         if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
 
@@ -69,17 +69,21 @@ public class PhaseManager : MonoBehaviour
 
         // Sandy underwater background, basically the same left to right.
 
-        // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
-        yield return _heroMover.FloatTo(new Vector3(-55, 0, 0));
-        _camera.Follow(_hero.gameObject);
-        
-        // Player character floats down from the top center
-        var playerFloat = _playerMover.FloatTo(new Vector3(-65, 0, 0));
+        IEnumerator heroFloating = _heroMover.FloatTo(new Vector3(-55, 0, 0));
 
-        yield return Utilities.WaitForSeconds(1);
+        yield return Utilities.WaitForSeconds(0.5f);
+
+        // Player character floats down from the top center
+        var playerFloat = _playerMover.FloatTo(new Vector3(-60, 0, 0));
+
+        // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
+        yield return heroFloating;
+        _camera.Follow(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
         var heroWalk = _heroMover.WalkTo(new Vector2(4.38f, 0.0f));
+
+        //yield return Utilities.WaitForSeconds(1);
 
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
