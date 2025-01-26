@@ -155,4 +155,88 @@ public class PhaseManager : MonoBehaviour
         // Phase 1 ends 60 seconds after it began.
         yield return phaseEnd;
     }
+
+    IEnumerator Phase2()
+    {
+        if (SkipTo == PhaseSkipTo.Phase2) Utilities.FastMode = false;
+
+        var bossRoar = _boss.Say("Boss_Roar", 4.5f);
+        // Screen shake.
+        yield return Utilities.WaitForSeconds(0.5f);
+        yield return _camera.Shake(1);
+        yield return bossRoar;
+
+        yield return _hero.Say("Hero_StartPhase2");
+
+        //Octoshark Minions(Half Octopus, 1 / 8th Shark) begin to spawn from the Leviathan. 
+
+        yield return Utilities.WaitForSeconds(30f);
+
+    }
+
+    IEnumerator Phase3()
+    {
+        if (SkipTo == PhaseSkipTo.Phase3) Utilities.FastMode = false;
+
+        yield return _hero.Say("Hero_StartPhase3");
+        yield return _hero.Say("Hero_GetFlamingSwordSpecifically");
+
+        // puts his hand up in the air. He stop shooting the machine gun.
+
+        //A Flaming Sword floats down from the surface and lands somewhere in the backfield.
+
+        //10 seconds after the sword lands, the hero swings(whether he has the sword or not).
+
+        IEnumerator bossRoar;
+        //If wrong damage type
+        bossRoar = _boss.Say("Boss_WrongDamageType", 4.5f);
+        yield return _hero.Say("Boss_WrongDamageType");
+
+        //If correct damage type
+        bossRoar = _boss.Say("Boss_Roar", 4.5f);
+        // Screen shake.
+        yield return Utilities.WaitForSeconds(0.5f);
+        yield return _camera.Shake(1);
+        yield return bossRoar;
+
+        // hero throws the weapon somewhere random on the screen.
+        // Then he says "Fetch Me ALL THE WEAPONS",
+        yield return _hero.Say("Hero_SummonAllWeapons");
+        // then weapons float down from above:
+
+
+        // A cycle begins:
+        //        The hero shoots for 10 seconds.
+        //        The hero stops shooting and holds his hand in the air waiting for a weapon.
+        //5 seconds later the hero dashes forward and swings at the Leviathan
+        //        If the Hero has no weapon, he does no damage and says an "UnarmedElement" line
+        yield return _hero.Say("Hero_UnarmedElement");
+        //        If the hero has a weapons that beats the current color of the boss, the boss shakes and roars, hero says "Hero_CorrectElementAttack" line
+        yield return _hero.Say("Hero_CorrectElementAttack");
+        //        If the hero has the wrong color weapon, he says "Hero_WrongElementAttack" line.
+        yield return _hero.Say("Hero_WrongElementAttack");
+
+        //        The hero throws the weapon a random place on the level(potentially outside the viewport)
+        //        The hero moves quickly to a new location(and the screen / camera moves with him)
+
+        //        Each attack the boss randomly selects a color that is different than the current color, options are Black, Blue, or Green.
+
+        //        After 5 correct element hits, phase 3 ends.
+
+
+    }
+
+    IEnumerator Phase4()
+    {
+        if (SkipTo == PhaseSkipTo.Phase4) Utilities.FastMode = false;
+
+        yield return _hero.Say("Hero_StartPhase4");
+    }
+
+    IEnumerator Phase5()
+    {
+        if (SkipTo == PhaseSkipTo.Phase5) Utilities.FastMode = false;
+
+        yield return _hero.Say("Hero_StartPhase5");
+    }
 }
