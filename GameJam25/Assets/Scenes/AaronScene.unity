@@ -129,14 +129,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
@@ -184,22 +180,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2085657177287028523, guid: b164ebf92762ee843bcb27e4e9307807, type: 3}
-      propertyPath: m_text
-      value: 'Aaron Lieberman, Programming
-
-        Anna Shabayev, Design
-
-        Bodie
-        Lee, Art
-
-        Eric Carter, Design
-
-        Jeremy Bilas, Programming
-
-        Victor
-        Erickson, Programming'
-      objectReference: {fileID: 0}
     - target: {fileID: 2085657178702008307, guid: b164ebf92762ee843bcb27e4e9307807, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -664,14 +644,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environment
       objectReference: {fileID: 0}
-    - target: {fileID: 1099514715349217164, guid: 7e523c362b4dc274a84189636fda6542, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841228093257382463, guid: 7e523c362b4dc274a84189636fda6542, type: 3}
-      propertyPath: m_Size.y
-      value: 28
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -794,10 +766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 5541363317675288416, guid: ed22100b03f3bcb4d9ee1012c6da3753, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -58.42
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -850,10 +818,6 @@ PrefabInstance:
     - target: {fileID: 1400807245426954809, guid: aa0bed780e082cb4b8a6e6836a3670ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406047642122840840, guid: aa0bed780e082cb4b8a6e6836a3670ee, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.25881904
       objectReference: {fileID: 0}
     - target: {fileID: 6398886995783956889, guid: aa0bed780e082cb4b8a6e6836a3670ee, type: 3}
       propertyPath: m_AnchorMax.x
