@@ -949,7 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionTags:
   - Enemy
-  damageAmount: 100
+  damageAmount: 10
   damageCooldown: 3
 --- !u!1001 &264918214818454161
 PrefabInstance:
