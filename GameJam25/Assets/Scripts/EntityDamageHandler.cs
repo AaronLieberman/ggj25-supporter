@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EntityDamageHandler : MonoBehaviour
 {
-    float damageCooldown = 5f;
+    [SerializeField] public float PostDamageInvicibilitySeconds = 0.1f;
     float _timeSinceLastDamage;
     EntityResources _entityResources;
 
@@ -44,7 +44,7 @@ public class EntityDamageHandler : MonoBehaviour
                 _damagers.Remove(damager);
             }
 
-            _timeSinceLastDamage = Time.time + damageCooldown;
+            _timeSinceLastDamage = Time.time + PostDamageInvicibilitySeconds;
         }
     }
 
@@ -68,7 +68,7 @@ public class EntityDamageHandler : MonoBehaviour
     {
         InHurtState = true;
 
-        yield return Utilities.WaitForSeconds(3f);
+        yield return Utilities.WaitForSeconds(PostDamageInvicibilitySeconds);
 
         InHurtState = false;
     }
