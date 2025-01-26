@@ -6,6 +6,7 @@ public enum PhaseSkipTo
     None,
     StartCinematic,
     StartOfControl,
+    DivingGear,
     Phase1,
     Phase2,
     Phase3,
@@ -27,7 +28,7 @@ public class PhaseManager : MonoBehaviour
     public PhaseSkipTo SkipTo;
 
     // should have a DivingGear and a Throwable on it
-    public DivingGear DivingGearPrefab;
+    public GameObject DivingGearPrefab;
 
     void Awake()
     {
@@ -102,13 +103,23 @@ public class PhaseManager : MonoBehaviour
         yield return _camera.Shake(1);
         yield return bossRoar;
 
+        if (SkipTo == PhaseSkipTo.DivingGear) Utilities.FastMode = false;
+
         // The diving gear flies off the Hero. It lands on the ground.
         _hero.SetDivingGear(false);
-        var divingGearObject = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
-        yield return divingGearObject.GetComponent<Throwable>().ThrowTo(-40, -20, 2);
+        var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
+        var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
+        divingGearObject1.GetComponent<PeriodicSpawner>().enabled = false;
+        divingGearObject2.GetComponent<PeriodicSpawner>().enabled = false;
+        var divingGearObject1Wait = divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-13, 6));
+        var divingGearObject2Wait = divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-13, -15));
+        yield return divingGearObject1Wait;
+        yield return divingGearObject2Wait;
+        divingGearObject1.GetComponent<PeriodicSpawner>().enabled = true;
+        divingGearObject2.GetComponent<PeriodicSpawner>().enabled = true;
+
         //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         // The first Oxygen Bubble has some text next to it that says OXYGEN >
-        divingGearObject.GetComponent<DivingGear>().SetBubblesEnabled(true);
 
         // 5 additional seconds pass.
         yield return Utilities.WaitForSeconds(5);

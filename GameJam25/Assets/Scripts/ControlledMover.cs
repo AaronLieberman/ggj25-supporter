@@ -63,12 +63,12 @@ public class ControlledMover : MonoBehaviour
                     float distanceSoFar = Vector3.Distance(initialXY, currentXY);
                     float distanceToTarget = Vector3.Distance(currentXY, targetXY);
                     float updatedZ = -GetHeightAtFraction(totalDistance, 45, 1.0f - (distanceSoFar / totalDistance));
-                    Debug.Log("Throw distance " + distanceSoFar / totalDistance + " " + distanceToTarget + " " + distanceSoFar);
+                    //Debug.Log("Throw distance " + distanceSoFar / totalDistance + " " + distanceToTarget + " " + distanceSoFar);
                     transform.position = new(updatedXY.x, updatedXY.y, updatedZ);
                 }
                 else
                 {
-                    Debug.Log("Move distance " + distance);
+                    //Debug.Log("Move distance " + distance);
                     transform.position = Vector3.MoveTowards(transform.position, _targetPosition, distance);
                 }
             }
@@ -101,7 +101,7 @@ public class ControlledMover : MonoBehaviour
         var distance = _movementType == MovementType.Thrown
             ? Vector3.Distance(new(transform.position.x, transform.position.y, 0), new(_targetPosition.x, _targetPosition.y, 0))
             : Vector3.Distance(transform.position, _targetPosition);
-        Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + distance);
+        //Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + distance);
         return distance < _minTargetDistanceThreshold;
     }
 

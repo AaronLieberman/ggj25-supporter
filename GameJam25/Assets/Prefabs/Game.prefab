@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c119666e3193cdf469c942d1238434e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkipTitles: 0
-  DivingGearPrefab: {fileID: 4165498685431799642, guid: cdd1e17f855d97f448e5cd8d3cbcc0a4, type: 3}
+  SkipTo: 0
+  DivingGearPrefab: {fileID: 2932546119148665084, guid: cdd1e17f855d97f448e5cd8d3cbcc0a4, type: 3}

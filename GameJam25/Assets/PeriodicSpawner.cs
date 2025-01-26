@@ -7,6 +7,11 @@ public class PeriodicSpawner : MonoBehaviour
     
     float _lastSpawn = 0;
 
+    void Start()
+    {
+        _lastSpawn = Time.time;
+    }
+
     void Update()
     {
         if (SpawnPrefab == null)
