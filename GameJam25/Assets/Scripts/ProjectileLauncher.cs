@@ -8,7 +8,6 @@ public class ProjectileLauncher : MonoBehaviour
     public float ShotsPerSecond;
     public List<GameObject> Projectiles = new();
     public bool ShootImmediately = true;
-    public Vector3 ShootDirection;
     public float ShootConeDegrees;
 
     float _timeLastShot;
@@ -34,16 +33,13 @@ public class ProjectileLauncher : MonoBehaviour
 
         GameObject thisProj = Projectiles[_lastProjIndex];
         var go = Instantiate(thisProj, transform.position, Quaternion.identity);
-        if (ShootDirection.sqrMagnitude > 0.0001f)
+        var projectileMovement = go.GetComponent<ProjectileMovement>();
+        if (projectileMovement != null)
         {
-            var projectileMovement = go.GetComponent<ProjectileMovement>();
-            if (projectileMovement != null)
-            {
-                float randomAngle = Random.Range(-ShootConeDegrees / 2, ShootConeDegrees / 2);
-                Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
-                Vector3 randomDirection = rotation * ShootDirection;
-                projectileMovement.GoInDirection(randomDirection);
-            }
+            float randomAngle = Random.Range(-ShootConeDegrees / 2, ShootConeDegrees / 2);
+            Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
+            Vector3 randomDirection = rotation * (transform.rotation * Vector3.right);
+            projectileMovement.GoInDirection(randomDirection);
         }
     }
 }
