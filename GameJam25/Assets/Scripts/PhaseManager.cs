@@ -25,6 +25,8 @@ public class PhaseManager : MonoBehaviour
     ControlledMover _playerMover;
     BossController _boss;
 
+    PeriodicSpawner _octosharkSpawner;
+
     public PhaseSkipTo SkipTo;
     public bool Invincible;
 
@@ -40,6 +42,8 @@ public class PhaseManager : MonoBehaviour
         _player = Utilities.GetRootComponent<PlayerController>();
         _playerMover = _player.GetComponent<ControlledMover>();
         _boss = Utilities.GetRootComponent<BossController>();
+
+        _octosharkSpawner = GameObject.Find("Terrain").GetComponentInChildren<PeriodicSpawner>();
     }
 
     private void Start()
@@ -174,6 +178,7 @@ public class PhaseManager : MonoBehaviour
         yield return _hero.Say("Hero_StartPhase2");
 
         //Octoshark Minions(Half Octopus, 1 / 8th Shark) begin to spawn from the Leviathan. 
+        _octosharkSpawner.SetEnabled(true);
 
         yield return Utilities.WaitForSeconds(30f);
     }
