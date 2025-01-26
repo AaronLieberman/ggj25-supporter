@@ -88,7 +88,7 @@ public class PhaseManager : MonoBehaviour
         if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
-        yield return heroWalk;  //TODO: For some reason the hero doens't start walking until we get here. But he should have been walking since we created this
+        yield return heroWalk; 
         yield return _hero.Say("Hero_ReignOfDestruction");
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
 
@@ -97,20 +97,20 @@ public class PhaseManager : MonoBehaviour
 
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
-        var bossRoar = _boss.Say("Boss_Roar", 4.5f);
+        var bossRoar = StartCoroutine(_boss.Say("Boss_Roar", 4.5f));
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
-        yield return _camera.Shake(1);
-        yield return bossRoar;
-
-        if (SkipTo == PhaseSkipTo.DivingGear) Utilities.FastMode = false;
-
         // The diving gear flies off the Hero. It lands on the ground.
         _hero.SetDivingGear(false);
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
         var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13)));
+        yield return _camera.Shake(1);
+        yield return bossRoar;
+
+        if (SkipTo == PhaseSkipTo.DivingGear) Utilities.FastMode = false;
+ 
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
         divingGearObject1.GetComponent<PeriodicSpawner>().SetEnabled(true);
@@ -119,11 +119,11 @@ public class PhaseManager : MonoBehaviour
         //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         // The first Oxygen Bubble has some text next to it that says OXYGEN >
 
-        // 5 additional seconds pass.
-        yield return Utilities.WaitForSeconds(5);
-
         // Hero dialog bubble: 
         yield return _hero.Say("Hero_LostDivingGear");
+
+        // 5 additional seconds pass.
+        yield return Utilities.WaitForSeconds(3);
 
 
     }
@@ -132,7 +132,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
 
-        IEnumerator phaseEnd = Utilities.WaitForSeconds(60.0f);
+        var phaseEnd = StartCoroutine(Utilities.WaitForSeconds(60.0f));
 
         //Sea stars begin firing randomly from a few points on the Leviathan's body, generally in the direction of the hero
         //(random -10 to 10 degrees off the hero's center). About 1 a second. Sea stars do 10 damage to the hero and player.
@@ -160,7 +160,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (SkipTo == PhaseSkipTo.Phase2) Utilities.FastMode = false;
 
-        var bossRoar = _boss.Say("Boss_Roar", 4.5f);
+        var bossRoar = StartCoroutine(_boss.Say("Boss_Roar", 4.5f));
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         yield return _camera.Shake(1);
@@ -187,13 +187,13 @@ public class PhaseManager : MonoBehaviour
 
         //10 seconds after the sword lands, the hero swings(whether he has the sword or not).
 
-        IEnumerator bossRoar;
+        Coroutine bossRoar;
         //If wrong damage type
-        bossRoar = _boss.Say("Boss_WrongDamageType", 4.5f);
+        bossRoar = StartCoroutine(_boss.Say("Boss_WrongDamageType", 4.5f));
         yield return _hero.Say("Boss_WrongDamageType");
 
         //If correct damage type
-        bossRoar = _boss.Say("Boss_Roar", 4.5f);
+        bossRoar = StartCoroutine(_boss.Say("Boss_Roar", 4.5f));
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         yield return _camera.Shake(1);
