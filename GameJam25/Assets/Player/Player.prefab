@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045456979011919915}
   - component: {fileID: 6271238440188782650}
+  - component: {fileID: 8879187614065688104}
   m_Layer: 13
   m_Name: InteractionCollider
   m_TagString: Player
@@ -354,6 +355,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.19, y: 1.75}
   m_EdgeRadius: 0
+--- !u!114 &8879187614065688104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915998422378586947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionTags: []
+  damageAmount: 10
+  damageCooldown: 0.75
 --- !u!1 &4180244498635541423
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b738633aa6fc143a8ed157e8711304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalkingSpeed: 6
+  FloatingSpeed: 6
 --- !u!114 &2620211312045190589
 MonoBehaviour:
   m_ObjectHideFlags: 0
