@@ -28,5 +28,6 @@ public class GameOver : MonoBehaviour
     {
         _player.SetControlsEnabled(false);
         _canvas.enabled = true;
+        Time.timeScale = 0;
     }
 }

@@ -14,5 +14,6 @@ public class YouWin : MonoBehaviour
     public void ShowYouWin()
     {
         _canvas.enabled = true;
+        Time.timeScale = 0;
     }
 }
