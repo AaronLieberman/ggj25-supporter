@@ -4,6 +4,7 @@ public class PeriodicSpawner : MonoBehaviour
 {
     public float RateInSeconds = 1;
     public GameObject SpawnPrefab;
+    public Transform SpawnPosition;
     
     bool _enabled;
     float _lastSpawn;
@@ -21,12 +22,12 @@ public class PeriodicSpawner : MonoBehaviour
 
     void Update()
     {
-        if (SpawnPrefab == null || !_enabled)
+        if (SpawnPrefab == null || SpawnPosition == null || !_enabled)
             return;
 
         if (Time.time - _lastSpawn > RateInSeconds / Time.timeScale)
         {
-            Instantiate(SpawnPrefab, transform);
+            Instantiate(SpawnPrefab, SpawnPosition);
             _lastSpawn = Time.time;
         }
     }
