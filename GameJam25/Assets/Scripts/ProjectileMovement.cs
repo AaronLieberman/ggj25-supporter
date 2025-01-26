@@ -22,6 +22,8 @@ public class ProjectileMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Carriable>() && GetComponent<Carriable>().BeingCarried) { return; }
+
         transform.position += (MovePerSecond * Time.deltaTime);
         if(MaxLifetime > 0 && Time.time > startTime + MaxLifetime)
         {

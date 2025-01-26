@@ -16,21 +16,21 @@ public class EntityDamageHandler : MonoBehaviour
 
     public bool InHurtState { get; private set; }
 
-    void AttachPlayerResources()
+    void AttachEntityResources()
     {
         entityResources = transform.parent.parent.GetComponent<EntityResources>();
     }
 
     private void Start()
     {
-        AttachPlayerResources();
+        AttachEntityResources();
     }
 
     private void FixedUpdate()
     {
         if (!entityResources)
         {
-            AttachPlayerResources();
+            AttachEntityResources();
         }
 
         if (damageable && timeSinceLastDamage <= Time.time)

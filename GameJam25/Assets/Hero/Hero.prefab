@@ -572,7 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10000
   TakeDamageClips: []
-  HealClips: []
+  HealClips:
+  - {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
 --- !u!82 &4182134418114939233
 AudioSource:
   m_ObjectHideFlags: 0
@@ -948,7 +949,7 @@ MonoBehaviour:
   interactionTags:
   - Enemy
   damageAmount: 100
-  damageCooldown: 0.75
+  damageCooldown: 3
 --- !u!1001 &264918214818454161
 PrefabInstance:
   m_ObjectHideFlags: 0
