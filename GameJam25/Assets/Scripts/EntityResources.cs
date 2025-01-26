@@ -58,6 +58,11 @@ public class EntityResources : MonoBehaviour
             Health -= amount;
         }
 
+        foreach (var carriable in GetComponentsInChildren<Carriable>())
+        {
+            carriable.Drop();
+        }
+
         AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
         if (damageClip)
         {
