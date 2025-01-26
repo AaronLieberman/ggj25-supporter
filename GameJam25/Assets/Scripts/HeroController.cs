@@ -47,7 +47,7 @@ public class HeroController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
-        _gfxHolder = transform.Find("GFX");
+        _gfxHolder = transform.Find("Root").Find("GFX");
         _dialogBubble = GetComponentInChildren<DialogBubbleController>();
 
         _targetPosition = transform.position;
@@ -89,7 +89,7 @@ public class HeroController : MonoBehaviour
         if (_gfxHolder)
         {
             _gfxHolder.localScale = new Vector3(
-                transform.position.x > _targetPosition.x ? -1 : _gfxHolder.localScale.x * _gfxHolder.localScale.x,
+                _gfxHolder.position.x > _targetPosition.x ? -1 : _gfxHolder.localScale.x * _gfxHolder.localScale.x,
                 _gfxHolder.localScale.y,
                 _gfxHolder.localScale.z
             );
