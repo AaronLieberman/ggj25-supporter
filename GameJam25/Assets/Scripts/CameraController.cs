@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     public void Follow(GameObject o)
     {
         Debug.Log("Camera following " + o.name);
+        //Player = o.GetComponent<Transform>(); // Welp, I thought this would work, but it does not. --ECarter
     }
 
     public IEnumerator Shake(float seconds)
