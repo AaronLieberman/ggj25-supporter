@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class EntityDamageHandler : MonoBehaviour
@@ -35,7 +36,12 @@ public class EntityDamageHandler : MonoBehaviour
             StartCoroutine(ApplyHurt());
 
             var damagers = _damagers;
-            _entityResources.Damage((int)damagers.Sum(d => d.DamageAmount));
+            int totalDamage = 0;
+            foreach (var damager in damagers)
+            {
+                totalDamage += damager.DamageBasedOnMaxHealth ? (int)((damager.DamageAmount / 100.0f) * _entityResources.MaxHealth * damager.DamageBasedOnMaxHealthScalar) : (int)damager.DamageAmount;
+            }
+            _entityResources.Damage(totalDamage);
 
             var damagersToDestroy = damagers.Where(d => d.DestroyOnContact).ToList();
             foreach (var damager in damagersToDestroy)

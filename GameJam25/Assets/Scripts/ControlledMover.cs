@@ -81,9 +81,9 @@ public class ControlledMover : MonoBehaviour
         _movementCancel = new CancellationTokenSource();
     }
 
-    void SetMovementTarget(Vector3 targetPos, MovementType movementType)
+    void SetMovementTarget(Vector3 targetPos, MovementType movementType, bool log = true)
     {
-        Debug.Log(gameObject.name + " SetMovementTarget " + targetPos + " " + movementType);
+        if (log) Debug.Log(gameObject.name + " SetMovementTarget " + targetPos + " " + movementType);
 
         CancelMovement();
 
@@ -131,16 +131,16 @@ public class ControlledMover : MonoBehaviour
         }
     }
 
-    public IEnumerator WalkTo(Vector2 targetPos)
+    public IEnumerator WalkTo(Vector2 targetPos, bool log = true)
     {
-        Debug.Log(gameObject.name + " walking " + targetPos);
+        if (log) Debug.Log(gameObject.name + " walking " + targetPos);
 
-        SetMovementTarget(targetPos, MovementType.Walking);
+        SetMovementTarget(targetPos, MovementType.Walking, log);
         yield return WaitUntilCloseToTarget();
 
         if (!_movementCancel.IsCancellationRequested)
         {
-            Debug.Log(gameObject.name + " stopped");
+            if (log) Debug.Log(gameObject.name + " stopped");
         }
     }
 

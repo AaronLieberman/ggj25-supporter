@@ -504,10 +504,11 @@ GameObject:
   - component: {fileID: 6407570608627911118}
   - component: {fileID: 1706714605244093405}
   - component: {fileID: 6692807985201443378}
+  - component: {fileID: 23134494610634033}
   - component: {fileID: 4182134418114939233}
   - component: {fileID: 97547131070050200}
   - component: {fileID: 4676036330742846364}
-  - component: {fileID: 23134494610634033}
+  - component: {fileID: 1423044459299806936}
   m_Layer: 16
   m_Name: Hero
   m_TagString: Player
@@ -579,6 +580,19 @@ MonoBehaviour:
   TakeDamageClips: []
   HealClips:
   - {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
+--- !u!114 &23134494610634033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621055493224660275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PostDamageInvicibilitySeconds: 0.1
 --- !u!82 &4182134418114939233
 AudioSource:
   m_ObjectHideFlags: 0
@@ -736,18 +750,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.82, y: 3}
   m_EdgeRadius: 0
---- !u!114 &23134494610634033
-MonoBehaviour:
+--- !u!50 &1423044459299806936
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6621055493224660275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &7083502480655171153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PostDamageInvicibilitySeconds: 0.1
 --- !u!1001 &264918214818454161
 PrefabInstance:
   m_ObjectHideFlags: 0

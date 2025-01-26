@@ -5,14 +5,17 @@ public class OctosharkController : MonoBehaviour
 {
     [HideInInspector] public EntityResources EntityResources;
 
-    enum HeroState { Idle, Running }
-
-    // HeroState _heroState = HeroState.Idle;
+    enum OctosharkState { Idle, Running }
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
     float _footstepTimer = 0f;
 
+    [SerializeField] float PursueInterval = 0.1f;
+    float _pursueCooldownTimer = 0f;
+    Transform _pursueTarget;
+
+    ControlledMover _controlledMover;
     Rigidbody2D _rigidBody;
     SpriteRenderer _spriteRenderer;
     Animator _animator;
@@ -39,6 +42,14 @@ public class OctosharkController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _dialogBubble = GetComponentInChildren<DialogBubbleController>();
         _shadow = GetComponentInChildren<Shadow>();
+        _controlledMover = GetComponent<ControlledMover>();
+
+        AttachPlayerTarget();
+    }
+
+    void AttachPlayerTarget()
+    {
+        _pursueTarget = Utilities.GetRootComponent<PlayerController>().transform;
     }
 
     void Update()
@@ -50,6 +61,15 @@ public class OctosharkController : MonoBehaviour
         spriteRenderer.color = isInHurtState
             ? new Color(1, Mathf.PingPong(Time.time * 3, 1), Mathf.PingPong(Time.time * 3, 1))
             : new Color(1, 1, 1);
+
+        if (_pursueTarget && _controlledMover)
+        {
+            StartCoroutine(_controlledMover.WalkTo(_pursueTarget.position, false));
+        }
+        else
+        {
+            AttachPlayerTarget();
+        }
     }
 
     void PlayFootsteps()

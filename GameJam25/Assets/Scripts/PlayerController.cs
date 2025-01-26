@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
             if (_controlsEnabled)
             {
+                /*
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     StartCoroutine(Utilities.GetRootComponent<HeroController>()
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
                 {
                     EntityResources.Heal(10);
                 }
+                */
 
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
