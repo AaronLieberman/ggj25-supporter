@@ -116,17 +116,21 @@ public class PhaseManager : MonoBehaviour
  
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
+        //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         divingGearObject1.GetComponent<PeriodicSpawner>().SetEnabled(true);
         divingGearObject2.GetComponent<PeriodicSpawner>().SetEnabled(true);
 
-        //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         // The first Oxygen Bubble has some text next to it that says OXYGEN >
+
+        //Sea stars begin firing randomly from a few points on the Leviathan's body, generally in the direction of the hero
+        //(random -10 to 10 degrees off the hero's center). About 1 a second. Sea stars do 10 damage to the hero and player.
+        _boss.StartShooters();
 
         // Hero dialog bubble: 
         yield return _hero.Say("Hero_LostDivingGear");
 
         // 5 additional seconds pass.
-        yield return Utilities.WaitForSeconds(3);
+        //yield return Utilities.WaitForSeconds(3);
 
 
     }
@@ -137,9 +141,7 @@ public class PhaseManager : MonoBehaviour
 
         var phaseEnd = StartCoroutine(Utilities.WaitForSeconds(60.0f));
 
-        //Sea stars begin firing randomly from a few points on the Leviathan's body, generally in the direction of the hero
-        //(random -10 to 10 degrees off the hero's center). About 1 a second. Sea stars do 10 damage to the hero and player.
-        _boss.StartShooters();
+
 
         _hero.StartBragging();
 
