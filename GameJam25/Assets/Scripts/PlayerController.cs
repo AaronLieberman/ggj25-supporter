@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
     public void SetControlsEnabled(bool v)
     {
         Debug.Log(v ? "Player controls enabled" : "Player controls disabled");
+        if (!v) _rigidBody.linearVelocity = Vector3.zero; 
         _controlsEnabled = v;
         GetComponent<ControlledMover>().enabled = !v;
     }

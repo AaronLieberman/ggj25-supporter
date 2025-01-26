@@ -40,7 +40,10 @@ public class PhaseManager : MonoBehaviour
         _player = Utilities.GetRootComponent<PlayerController>();
         _playerMover = _player.GetComponent<ControlledMover>();
         _boss = Utilities.GetRootComponent<BossController>();
+    }
 
+    private void Start()
+    {
         StartCoroutine(RunGame());
     }
 
