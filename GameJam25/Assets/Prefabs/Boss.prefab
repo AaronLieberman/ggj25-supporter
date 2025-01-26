@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6073474623126561925}
   - component: {fileID: 6175287905514953867}
   - component: {fileID: 1735061368695400961}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,26 +138,29 @@ PolygonCollider2D:
       - {x: -1.5, y: 27.125}
       - {x: -1.875, y: 26.9375}
       - {x: -2.4375, y: 27.5}
-      - {x: -3.6875, y: 27.4375}
+      - {x: -3.3446884, y: 29.102816}
+      - {x: -4.5667114, y: 35.27739}
+      - {x: -4.5885468, y: 28.969591}
       - {x: -4.0625, y: 27.25}
-      - {x: -4.5625, y: 26.875}
-      - {x: -5, y: 26.5625}
-      - {x: -4.5625, y: 25.3125}
-      - {x: -4.0625, y: 25.0625}
-      - {x: -3.5625, y: 25.3125}
-      - {x: -3.5, y: 25.0625}
-      - {x: -4, y: 24.75}
-      - {x: -4.8125, y: 23.625}
-      - {x: -4.9375, y: 23.0625}
-      - {x: -4.5625, y: 22.0625}
-      - {x: -4, y: 21.4375}
-      - {x: -4.1875, y: 20.5625}
+      - {x: -4.2318726, y: 26.880901}
+      - {x: -4.1736374, y: 26.556347}
+      - {x: -4.0364895, y: 25.687609}
+      - {x: -3.7582932, y: 25.409433}
+      - {x: -3.711359, y: 25.240908}
+      - {x: -3.5799084, y: 25.001362}
+      - {x: -3.6513958, y: 24.499846}
+      - {x: -3.7662792, y: 23.726637}
+      - {x: -4.203394, y: 23.016418}
+      - {x: -4.6657925, y: 22.608814}
+      - {x: -4.9028244, y: 21.964277}
+      - {x: -4.788357, y: 21.31625}
+      - {x: -4.7453957, y: 20.69434}
       - {x: -5.515257, y: 19.802662}
       - {x: -4.8468475, y: 19.078648}
-      - {x: -4.072096, y: 18.464859}
+      - {x: -5.355362, y: 18.80337}
       - {x: -4.095619, y: 17.74682}
       - {x: -4.0829124, y: 16.559563}
-      - {x: -4.745489, y: 16.140482}
+      - {x: -4.568632, y: 15.872911}
       - {x: -4.886881, y: 15.711731}
       - {x: -5.3193207, y: 14.796076}
       - {x: -5.25, y: 14.3125}
@@ -203,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2272072125022813300}
   - component: {fileID: 3935033204583167110}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273074954207303702}
   - component: {fileID: 5192517009509654026}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,6 +300,10 @@ PrefabInstance:
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_Name
       value: StarfishShooter (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_IsActive
@@ -365,6 +372,10 @@ PrefabInstance:
       value: StarfishShooter
       objectReference: {fileID: 0}
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -429,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_Name
       value: StarfishShooter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 747501067413346101, guid: 3832e5c2756d9eb439851d0d6111ba5f, type: 3}
       propertyPath: m_IsActive
