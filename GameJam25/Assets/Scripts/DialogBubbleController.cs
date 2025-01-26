@@ -21,7 +21,6 @@ public class DialogBubbleController : MonoBehaviour
     private float startTime = float.MinValue;
     private Vector3 startingScale;
 
-
     void Start()
     {
         startingScale = transform.localScale;
@@ -31,8 +30,7 @@ public class DialogBubbleController : MonoBehaviour
     public IEnumerator PopDialog(string dialogKey)
     {
         startTime = Time.time;
-        //TODO: We need to actually select the dialog from a table, instead of printing the key
-        dialogText.text = dialogKey;
+        dialogText.text = DialogBubbleData.GetLine(dialogKey);
         return Utilities.WaitForSeconds(SpawnDuration + Duration + DespawnDuration);
     }
 
