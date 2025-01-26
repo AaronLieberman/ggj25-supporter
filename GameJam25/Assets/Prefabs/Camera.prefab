@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4615343891396673750}
   - component: {fileID: 8217973213738774971}
   - component: {fileID: 4994115161656340552}
+  - component: {fileID: 8577928975620929772}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -107,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  PlayerOffset: 4.5
   ShakeAmount: 1
 --- !u!114 &4994115161656340552
 MonoBehaviour:
@@ -129,6 +129,28 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!95 &8577928975620929772
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455536997167181762}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a1160ada9d59929439a94053199780be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2432268272915724187
 GameObject:
   m_ObjectHideFlags: 0

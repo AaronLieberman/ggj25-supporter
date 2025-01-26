@@ -75,25 +75,25 @@ public class PhaseManager : MonoBehaviour
 
         // Sandy underwater background, basically the same left to right.
 
-        var heroFloating = StartCoroutine(_heroMover.FloatTo(new Vector3(-55, 0, 0)));
+        var heroFloating = StartCoroutine(_heroMover.FloatTo(new(-55, 0, 0)));
 
-        yield return Utilities.WaitForSeconds(0.5f);
+        yield return Utilities.WaitForSeconds(1);
 
         // Player character floats down from the top center
-        var playerFloat = StartCoroutine(_playerMover.FloatTo(new Vector3(-60, 0, 0)));
+        var playerFloat = StartCoroutine(_playerMover.FloatTo(new(-60, 0, 0)));
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
         yield return heroFloating;
         _camera.Follow(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = StartCoroutine(_heroMover.WalkTo(new Vector2(4.38f, 0.0f)));
+        var heroWalk = StartCoroutine(_heroMover.WalkTo(new(4.38f, 0.0f)));
 
-        //yield return Utilities.WaitForSeconds(1);
+        yield return Utilities.WaitForSeconds(1);
 
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
-        _player.SetControlsEnabled(true);
+        var playerIntroWait = StartCoroutine(_playerMover.WalkTo(new(-3, 0.0f)));
 
         if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
 
@@ -103,7 +103,9 @@ public class PhaseManager : MonoBehaviour
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
 
         //TODO: This is placeholder until the camera follow works
-        _playerMover.SnapTo(new Vector2(-4.38f, 0.0f));
+        //_playerMover.SnapTo(new Vector2(-4.38f, 0.0f));
+        yield return playerIntroWait;
+        _player.SetControlsEnabled(true);
 
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"

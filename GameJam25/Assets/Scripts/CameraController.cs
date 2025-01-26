@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     {
         Debug.Log("Camera following " + o.name);
         //Player = o.GetComponent<Transform>(); // Welp, I thought this would work, but it does not. --ECarter
+
+        GetComponent<Animator>().SetTrigger("Slide");
     }
 
     public IEnumerator Shake(float seconds)
