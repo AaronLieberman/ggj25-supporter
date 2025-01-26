@@ -12,9 +12,13 @@ public class EntityHealHandler : MonoBehaviour
     {
         if (interactionTags.Contains(collision.tag))
         {
-            if (collision.transform.parent.parent.GetComponent<EntityResources>().Health < collision.transform.parent.parent.GetComponent<EntityResources>().MaxHealth)
+            if (collision.GetComponent<EntityResources>())
             {
-                collision.transform.parent.parent.GetComponent<EntityResources>().Heal(healAmount);
+                EntityResources entityResources = collision.GetComponent<EntityResources>();
+
+                if (entityResources.Health >= entityResources.MaxHealth) return;
+
+                entityResources.Heal(healAmount);
                 Destroy(gameObject);
             }
         }
