@@ -308,9 +308,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  TakeDamageClips: []
-  HealClips:
-  - {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
+  TakeDamageClips:
+  - Clip: {fileID: 8300000, guid: 9bd5f5515b5ba6a45bfe801652f34f49, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: e59a7cd8a6c48f749b093fe88c6ffec3, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: 5cd5ca26bee617a4ea3b2cf7bdea5f71, type: 3}
+    VolumeScale: 1
+  HealClips: []
 --- !u!82 &5459581088736782402
 AudioSource:
   m_ObjectHideFlags: 0

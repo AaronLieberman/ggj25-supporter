@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class AudioEntry
 {
     public AudioClip Clip;
-    public float VolumeScale;
+    public float VolumeScale = 1.0f;
 }
 
 public class EntityResources : MonoBehaviour
@@ -50,12 +50,12 @@ public class EntityResources : MonoBehaviour
         Health = MaxHealth;
     }
 
-    AudioClip GetRandomAudioClip(List<AudioEntry> audioClips)
+    AudioEntry GetRandomAudioClip(List<AudioEntry> audioEntries)
     {
-        if (!audioClips.Any())
+        if (!audioEntries.Any())
             return null;
 
-        return audioClips[UnityEngine.Random.Range(0, audioClips.Count - 1)].Clip;
+        return audioEntries[UnityEngine.Random.Range(0, audioEntries.Count - 1)];
     }
 
     public void Damage(int amount = 1)
@@ -70,20 +70,20 @@ public class EntityResources : MonoBehaviour
             Destroy(carriable.gameObject);
         }
 
-        AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
-        if (damageClip)
+        AudioEntry damageClip = GetRandomAudioClip(TakeDamageClips);
+        if (damageClip.Clip)
         {
-            _audioSource.PlayOneShot(damageClip);
+            _audioSource.PlayOneShot(damageClip.Clip, damageClip.VolumeScale);
         }
     }
 
     public void Heal(int amount = 1)
     {
         Health += amount;
-        AudioClip healClip = GetRandomAudioClip(HealClips);
-        if (healClip)
+        AudioEntry healClip = GetRandomAudioClip(HealClips);
+        if (healClip.Clip)
         {
-            _audioSource.PlayOneShot(healClip);
+            _audioSource.PlayOneShot(healClip.Clip, healClip.VolumeScale);
         }
     }
 }

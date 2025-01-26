@@ -564,14 +564,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   TakeDamageClips:
-  - {fileID: 8300000, guid: 9bd5f5515b5ba6a45bfe801652f34f49, type: 3}
-  - {fileID: 8300000, guid: e59a7cd8a6c48f749b093fe88c6ffec3, type: 3}
-  - {fileID: 8300000, guid: 5cd5ca26bee617a4ea3b2cf7bdea5f71, type: 3}
-  - {fileID: 8300000, guid: 101d5859f146df249a91f8f62699b3a5, type: 3}
-  - {fileID: 8300000, guid: 52c1d389e4c61da4bb658161bc9f61fb, type: 3}
-  - {fileID: 8300000, guid: e13c526a276a836419f1adfeee0a67c7, type: 3}
+  - Clip: {fileID: 8300000, guid: 9bd5f5515b5ba6a45bfe801652f34f49, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: e59a7cd8a6c48f749b093fe88c6ffec3, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: 5cd5ca26bee617a4ea3b2cf7bdea5f71, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: 101d5859f146df249a91f8f62699b3a5, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: 52c1d389e4c61da4bb658161bc9f61fb, type: 3}
+    VolumeScale: 1
+  - Clip: {fileID: 8300000, guid: e13c526a276a836419f1adfeee0a67c7, type: 3}
+    VolumeScale: 1
   HealClips:
-  - {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
+  - Clip: {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
+    VolumeScale: 0.4
 --- !u!114 &8216698604253548842
 MonoBehaviour:
   m_ObjectHideFlags: 0
