@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionTags:
   - Enemy
+  damageAmount: 10
   damageCooldown: 0.75
 --- !u!1 &4180244498635541423
 GameObject:
