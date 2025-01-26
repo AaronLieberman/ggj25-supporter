@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
     [HideInInspector]
     public Transform Player;
 
-    [SerializeField] float PlayerOffset = 4;
     [SerializeField] float ShakeAmount = 1;
 
     float _shakeSecondsRemaining;

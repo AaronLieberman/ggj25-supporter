@@ -74,9 +74,9 @@ public class PhaseManager : MonoBehaviour
         _camera.Follow(_hero.gameObject);
         
         // Player character floats down from the top center
-        var playerFloat = _playerMover.FloatTo(-65, 1, 3);
+        var playerFloat = _playerMover.FloatTo(new Vector3(-65, 1, 3));
         //TODO: This is placeholder until the camera follow works
-        _player.SnapTo(new Vector2(4.38f, 0.0f));
+        _playerMover.SnapTo(new Vector2(4.38f, 0.0f));
 
         yield return Utilities.WaitForSeconds(1);
 
