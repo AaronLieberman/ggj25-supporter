@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 1706714605244093405}
   - component: {fileID: 6692807985201443378}
   - component: {fileID: 4182134418114939233}
+  - component: {fileID: 97547131070050200}
   m_Layer: 16
   m_Name: Hero
   m_TagString: Player
@@ -672,6 +673,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &97547131070050200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621055493224660275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65ed9ba79964bd478bdea1bc71736b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RateInSeconds: 1
+  DamageAmount: 333
 --- !u!1 &7083502480655171153
 GameObject:
   m_ObjectHideFlags: 0

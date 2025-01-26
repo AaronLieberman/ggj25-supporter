@@ -103,6 +103,7 @@ public class PhaseManager : MonoBehaviour
         yield return Utilities.WaitForSeconds(0.5f);
         // The diving gear flies off the Hero. It lands on the ground.
         _hero.SetDivingGear(false);
+        _hero.GetComponent<PeriodicDamager>().SetEnabled(true);
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
