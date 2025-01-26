@@ -81,11 +81,11 @@ public class PhaseManager : MonoBehaviour
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
         yield return heroWalk;
-        yield return _hero.Say("Alright Leviathan, your reign of destruction is over! I'm here to slay you!");
+        yield return _hero.Say("Hero_ReignOfDestruction");
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
-        yield return _hero.Say("Oh, and that little guy over there is going to help, too.");
+        yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
-        var bossRoar = _boss.Say("ROOOOARRRRRR!!!!", 4.5f);
+        var bossRoar = _boss.Say("Boss_Roar", 4.5f);
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         yield return _camera.Shake(1);
@@ -103,7 +103,7 @@ public class PhaseManager : MonoBehaviour
         yield return Utilities.WaitForSeconds(5);
                 
         // Hero dialog bubble: 
-        yield return _hero.Say("That thing was messing up my hair anyway.");
+        yield return _hero.Say("Hero_LostDivingGear");
 
 
     }
@@ -112,7 +112,27 @@ public class PhaseManager : MonoBehaviour
     {
         if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
 
+        IEnumerator phaseEnd = Utilities.WaitForSeconds(60.0f);
+
+        //Sea stars begin firing randomly from a few points on the Leviathan's body, generally in the direction of the hero
+        //(random -10 to 10 degrees off the hero's center). About 1 a second. Sea stars do 10 damage to the hero and player.
         _boss.StartShooters();
-        yield return null;
+
+        _hero.StartBragging();
+
+        // The Hero begins shooting his machine gun continuously.It fires bullets randomly in a 15 degree cone straight forward.
+        // About 3 a second.
+        _hero.startShootingMachineGun();
+
+
+        // 10 seconds after the start of the phase the Hero says "Breathing water isn't as easy as I thought it would be."
+        yield return Utilities.WaitForSeconds(10.0f);
+        yield return _hero.Say("Hero_NeedsAir");
+
+
+        // If the hero hasn't spoken for 12 seconds, he brags about how great he is.
+
+        // Phase 1 ends 60 seconds after it began.
+        yield return phaseEnd;
     }
 }
