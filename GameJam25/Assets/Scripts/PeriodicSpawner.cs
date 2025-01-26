@@ -3,6 +3,7 @@ using UnityEngine;
 public class PeriodicSpawner : MonoBehaviour
 {
     public float RateInSeconds = 1;
+    public float InitialWait = 1;
     public GameObject SpawnPrefab;
     public Transform SpawnPosition;
     
@@ -17,7 +18,7 @@ public class PeriodicSpawner : MonoBehaviour
     public void SetEnabled(bool v)
     {
         _enabled = v;
-        _lastSpawn = Time.time;
+        _lastSpawn = Time.time - (RateInSeconds - InitialWait);
     }
 
     void Update()

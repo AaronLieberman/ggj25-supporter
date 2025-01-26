@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float MovementSpeed = 6;
     [SerializeField] float DashSpeed = 16;
+    [SerializeField] float DashCooldown = 1;
 
     PlayerState _playerState = PlayerState.Idle;
 
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     AudioSource _audioSource;
 
     bool _controlsEnabled = true;
+    float _lastDash;
 
     void Awake()
     {
@@ -84,17 +86,9 @@ public class PlayerController : MonoBehaviour
                 float horizontal = Input.GetAxisRaw("Horizontal");
                 float vertical = Input.GetAxisRaw("Vertical");
 
-                if (horizontal != 0)
+                if (Input.GetButtonDown("Dash") && Time.time - _lastDash > DashCooldown)
                 {
-                    _spriteRenderer.flipX = horizontal < 0;
-                    if (damageHandler)
-                    {
-                        damageHandler.transform.localScale = new Vector3(horizontal < 0 ? -1.0f : 1.0f, damageHandler.transform.localScale.y, damageHandler.transform.localScale.z);
-                    }
-                }
-
-                if (Input.GetButtonDown("Dash"))
-                {
+                    _lastDash = Time.time;
                     _playerState = PlayerState.Dashing;
 
                     _audioSource.PlayOneShot(DashClips[Random.Range(0, DashClips.Count - 1)]);

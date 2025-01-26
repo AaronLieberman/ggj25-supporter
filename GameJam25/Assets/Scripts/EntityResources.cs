@@ -53,7 +53,16 @@ public class EntityResources : MonoBehaviour
 
     public void Damage(int amount = 1)
     {
-        Health -= amount;
+        if (!Utilities.GetRootComponent<PhaseManager>().Invincible)
+        {
+            Health -= amount;
+        }
+
+        foreach (var carriable in GetComponentsInChildren<Carriable>())
+        {
+            carriable.Drop();
+        }
+
         AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
         if (damageClip)
         {

@@ -19,7 +19,8 @@ public class EntityHealHandler : MonoBehaviour
 
                 if (entityResources.Health >= entityResources.MaxHealth) return;
 
-                if (entityDamageHandler.InHurtState) return; //TODO this probably requires you to touch and untouch a bubble if it enters while you're hurt. Would like to fix this but no time. --ecarter
+                // TODO: this indeed feels too broken when you try to hand the hero a bubble
+                //if (entityDamageHandler.InHurtState) return; //TODO this probably requires you to touch and untouch a bubble if it enters while you're hurt. Would like to fix this but no time. --ecarter
 
                 entityResources.Heal(healAmount);
                 Destroy(gameObject);
