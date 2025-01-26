@@ -51,8 +51,8 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase0()
     {
-        _hero.SnapTo(new Vector3(0, 0, -32));
-        _player.SnapTo(new Vector3(-5, 0, -32));
+        _hero.SnapTo(new Vector3(-55, 0, -32));
+        _player.SnapTo(new Vector3(-65, 0, -32));
 
         if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
 
@@ -66,15 +66,15 @@ public class PhaseManager : MonoBehaviour
         // Sandy underwater background, basically the same left to right.
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
-        yield return _hero.FloatTo(new Vector3(0, 0, 0));
+        yield return _hero.FloatTo(new Vector3(-55, 0, 0));
         _camera.Follow(_hero.gameObject);
-
+        
         // Player character floats down from the top center
-        var playerFloat = _player.FloatTo(-10, 0, 3);
+        var playerFloat = _player.FloatTo(-65, 1, 3);
         yield return Utilities.WaitForSeconds(1);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = _hero.WalkTo(new Vector2(10.0f, 0.0f));
+        var heroWalk = _hero.WalkTo(new Vector2(4.38f, 0.0f));
 
         //The PC touches down in the center, but is already at the far left side of the screen since it is moving. The player gains movement and dash controls as soon as they touch down.
         yield return playerFloat;
