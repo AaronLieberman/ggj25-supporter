@@ -589,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8659537662062659986, guid: d9839a7ff9bc4a94b91fdce0ad5c2605, type: 3}
       propertyPath: SkipTo
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -705,14 +705,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4602374023118838907, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.4375
-      objectReference: {fileID: 0}
-    - target: {fileID: 6941747622577871641, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2568212192572625928, guid: 6c0584c0cf45e9d4abdd978e3f309029, type: 3}
     - target: {fileID: 7048366820433732805, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -721,8 +713,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4602374023118838907, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -778,6 +769,10 @@ PrefabInstance:
     - target: {fileID: 2432268272915724187, guid: ed22100b03f3bcb4d9ee1012c6da3753, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541363317675288416, guid: ed22100b03f3bcb4d9ee1012c6da3753, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -52.39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

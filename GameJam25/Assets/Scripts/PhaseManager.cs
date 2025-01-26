@@ -51,6 +51,9 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase0()
     {
+        _hero.SnapTo(new Vector3(0, 0, -32));
+        _player.SnapTo(new Vector3(-5, 0, -32));
+
         if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
 
         _player.SetControlsEnabled(false);
@@ -63,7 +66,7 @@ public class PhaseManager : MonoBehaviour
         // Sandy underwater background, basically the same left to right.
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
-        yield return _hero.FloatTo(new Vector2(0.0f, 0.0f));
+        yield return _hero.FloatTo(new Vector3(0, 0, 0));
         _camera.Follow(_hero.gameObject);
 
         // Player character floats down from the top center

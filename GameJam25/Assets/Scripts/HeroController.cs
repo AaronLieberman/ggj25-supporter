@@ -11,12 +11,13 @@ public class HeroController : MonoBehaviour
     [HideInInspector] public EntityResources EntityResources;
 
     enum HeroState { Idle, Running }
-    enum MovementType { Floating, Walking }
+    enum MovementType { None, Floating, Walking }
 
-    [SerializeField] float MovementSpeed = 6;
+    [SerializeField] float WalkingSpeed = 6;
+    [SerializeField] float FloatingSpeed = 6;
 
-    HeroState _heroState = HeroState.Idle;
-    MovementType _movementState = MovementType.Floating;
+    // HeroState _heroState = HeroState.Idle;
+    MovementType _movementType = MovementType.None;
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
@@ -29,10 +30,11 @@ public class HeroController : MonoBehaviour
     AudioSource _audioSource;
     Transform _gfxHolder;
     DialogBubbleController _dialogBubble;
+    Shadow _shadow;
 
     CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
-    Vector2 _targetPosition;
+    Vector3 _targetPosition;
 
     bool _isDivingGearEquipped = false;
 
@@ -49,6 +51,7 @@ public class HeroController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _gfxHolder = transform.Find("Root").Find("GFX");
         _dialogBubble = GetComponentInChildren<DialogBubbleController>();
+        _shadow = GetComponentInChildren<Shadow>();
 
         _targetPosition = transform.position;
     }
@@ -77,7 +80,7 @@ public class HeroController : MonoBehaviour
             );
         }
 
-        if (Math.Abs(Vector2.Distance(transform.position, _targetPosition)) > _minTargetDistanceThreshold)
+        if (Vector3.Distance(transform.position, _targetPosition) > _minTargetDistanceThreshold)
         {
             MoveHero();
         }
@@ -95,8 +98,14 @@ public class HeroController : MonoBehaviour
             );
         }
 
-        // Update hero to move towards target position.
-        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, MovementSpeed * Time.deltaTime * Time.timeScale);
+        if (_movementType != MovementType.None)
+        {
+            // Update hero to move towards target position.
+            var speed = _movementType == MovementType.Walking ? WalkingSpeed : FloatingSpeed;
+            var distance = speed * Time.deltaTime * Time.timeScale;
+            Debug.Log("Move distance " + distance);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, distance);
+        }
     }
 
     void PlayFootsteps()
@@ -115,16 +124,24 @@ public class HeroController : MonoBehaviour
         _movementCancel = new CancellationTokenSource();
     }
 
-    void SetMovementTarget(Vector2 targetPos, MovementType movementType)
+    void SetMovementTarget(Vector3 targetPos, MovementType movementType)
     {
-        _movementState = movementType;
-        _targetPosition = targetPos;
+        Debug.Log("Hero SetMovementTarget " + targetPos + " " + movementType);
+
         CancelMovement();
+
+        // if requesting walking, force to ground
+        if (movementType == MovementType.Walking)
+            transform.Translate(0, 0, -transform.position.z);
+
+        _movementType = movementType;
+        _targetPosition = targetPos;
     }
 
     bool IsCloseToTarget()
     {
-        return Math.Abs(Vector2.Distance(transform.position, _targetPosition)) < _minTargetDistanceThreshold;
+        Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + Vector3.Distance(transform.position, _targetPosition));
+        return Vector3.Distance(transform.position, _targetPosition) < _minTargetDistanceThreshold;
     }
 
     IEnumerator WaitUntilCloseToTarget()
@@ -132,9 +149,17 @@ public class HeroController : MonoBehaviour
         yield return new WaitUntil(() => IsCloseToTarget() || _movementCancel.IsCancellationRequested);
     }
 
-    public IEnumerator FloatTo(Vector2 targetPos)
+    public void SnapTo(Vector3 targetPos)
     {
-        Debug.Log("Hero floating down");
+        Debug.Log("Hero snapped " + targetPos);
+
+        transform.position = targetPos;
+        SetMovementTarget(new Vector3(targetPos.x, targetPos.y, targetPos.z), MovementType.None);
+    }
+
+    public IEnumerator FloatTo(Vector3 targetPos)
+    {
+        Debug.Log("Hero floating down " + targetPos);
 
         SetMovementTarget(targetPos, MovementType.Floating);
         yield return WaitUntilCloseToTarget();
@@ -147,7 +172,7 @@ public class HeroController : MonoBehaviour
 
     public IEnumerator WalkTo(Vector2 targetPos)
     {
-        Debug.Log("Hero walking");
+        Debug.Log("Hero walking " + targetPos);
 
         SetMovementTarget(targetPos, MovementType.Walking);
         yield return WaitUntilCloseToTarget();
@@ -173,10 +198,11 @@ public class HeroController : MonoBehaviour
 
     public IEnumerator Brag()
     {
-        while (true) { 
+        while (true)
+        {
             yield return Utilities.WaitForSeconds(1);
-            if (Time.time > lastSpeech + 15) 
-            { 
+            if (Time.time > lastSpeech + 15)
+            {
                 Say("Hero_Brag");
             }
         }

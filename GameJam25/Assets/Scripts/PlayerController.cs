@@ -139,6 +139,13 @@ public class PlayerController : MonoBehaviour
         _rigidBody.linearVelocity = new Vector2(0.0f, 0.0f);
     }
 
+    public void SnapTo(Vector3 targetPos)
+    {
+        Debug.Log("Player snapped");
+
+        transform.position = targetPos;
+    }
+
     public IEnumerator FloatTo(float x, float y, float seconds)
     {
         Debug.Log("Player floating down");
