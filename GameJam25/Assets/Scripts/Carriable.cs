@@ -34,6 +34,8 @@ public class Carriable : MonoBehaviour
     {
         if (BeingCarried) { return; }
 
+        if (carrierTransform.GetComponentInChildren<Carriable>()) { return; }
+
         transform.SetParent(carrierTransform);
         transform.localPosition = new Vector3(1.0f, 0.0f, 0.0f);
         BeingCarried = true;
