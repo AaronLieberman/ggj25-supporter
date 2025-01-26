@@ -123,7 +123,7 @@ public class PhaseManager : MonoBehaviour
         var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
         var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13)));
         helmetObject.GetComponent<ControlledMover>().SnapTo(_hero.transform.position + new Vector3(0, 7, 0));
-        var helmetWait = StartCoroutine(helmetObject.GetComponent<ControlledMover>().ThrowTo(new(-9, -3)));
+        var helmetWait = StartCoroutine(helmetObject.GetComponent<ControlledMover>().ThrowTo(new(-18, -3)));
         yield return _camera.Shake(1);
         yield return bossRoar;
 

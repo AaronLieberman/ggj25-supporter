@@ -67,7 +67,7 @@ public class EntityResources : MonoBehaviour
 
         foreach (var carriable in GetComponentsInChildren<Carriable>())
         {
-            carriable.Drop();
+            Destroy(carriable.gameObject);
         }
 
         AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
