@@ -109,14 +109,12 @@ public class PhaseManager : MonoBehaviour
         _hero.SetDivingGear(false);
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
-        divingGearObject1.GetComponent<PeriodicSpawner>().enabled = false;
-        divingGearObject2.GetComponent<PeriodicSpawner>().enabled = false;
-        var divingGearObject1Wait = divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-13, 6));
-        var divingGearObject2Wait = divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-13, -15));
+        var divingGearObject1Wait = divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6));
+        var divingGearObject2Wait = divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13));
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
-        divingGearObject1.GetComponent<PeriodicSpawner>().enabled = true;
-        divingGearObject2.GetComponent<PeriodicSpawner>().enabled = true;
+        divingGearObject1.GetComponent<PeriodicSpawner>().SetEnabled(true);
+        divingGearObject2.GetComponent<PeriodicSpawner>().SetEnabled(true);
 
         //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         // The first Oxygen Bubble has some text next to it that says OXYGEN >

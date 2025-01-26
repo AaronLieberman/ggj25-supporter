@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cebd07433af0284081fc90d68d40847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RateInSeconds: 2
+  RateInSeconds: 4
   SpawnPrefab: {fileID: 5093428705259355960, guid: 759e3a881e10a8547954588517794b10, type: 3}
 --- !u!114 &7505925465508710538
 MonoBehaviour:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkingSpeed: 6
   FloatingSpeed: 6
-  ThrowSpeed: 6
+  ThrowSpeed: 12
 --- !u!1 &5383422688901512717
 GameObject:
   m_ObjectHideFlags: 0
