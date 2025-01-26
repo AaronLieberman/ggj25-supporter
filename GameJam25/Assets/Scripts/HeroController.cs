@@ -151,10 +151,12 @@ public class HeroController : MonoBehaviour
 
     public IEnumerator Brag()
     {
-        yield return Utilities.WaitForSeconds(1);
-        if (Time.time > lastSpeech + 10) 
-        { 
-            Say("Hero_Brag");
+        while (true) { 
+            yield return Utilities.WaitForSeconds(1);
+            if (Time.time > lastSpeech + 15) 
+            { 
+                Say("Hero_Brag");
+            }
         }
     }
 
@@ -165,13 +167,13 @@ public class HeroController : MonoBehaviour
 
     public void startShootingMachineGun()
     {
-        Debug.Log("TODO: Hero starts shooting machine gun);
+        Debug.Log("TODO: Hero starts shooting machine gun");
 
         return;
     }
 
     internal void StartBragging()
     {
-        StartCoroutine()
+        StartCoroutine(Brag());
     }
 }
