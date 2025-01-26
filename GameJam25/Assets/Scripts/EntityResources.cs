@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class EntityResources : MonoBehaviour
-{ 
+{
     public bool isAlive => _health > 0;
 
     public int MaxHealth = 6;
@@ -51,7 +51,7 @@ public class EntityResources : MonoBehaviour
         return audioClips[UnityEngine.Random.Range(0, audioClips.Count - 1)];
     }
 
-    public void Damage(int amount=1)
+    public void Damage(int amount = 1)
     {
         Health -= amount;
         AudioClip damageClip = GetRandomAudioClip(TakeDamageClips);
@@ -61,7 +61,7 @@ public class EntityResources : MonoBehaviour
         }
     }
 
-    public void Heal(int amount=1)
+    public void Heal(int amount = 1)
     {
         Health += amount;
         AudioClip healClip = GetRandomAudioClip(HealClips);

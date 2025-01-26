@@ -1,24 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EntityDamageHandler : MonoBehaviour
 {
-    [SerializeField]
-    private List<string> interactionTags;
-    [SerializeField]
-    private int damageAmount = 1;
-    [SerializeField]
-    private float damageCooldown = 5f;
-    private float timeSinceLastDamage;
-    private bool damageable = false;
-    EntityResources entityResources;
+    float damageCooldown = 5f;
+    float _timeSinceLastDamage;
+    EntityResources _entityResources;
+
+    readonly HashSet<Damager> _damagers = new();
 
     public bool InHurtState { get; private set; }
 
     void AttachEntityResources()
     {
-        entityResources = transform.parent.parent.GetComponent<EntityResources>();
+        _entityResources = transform.parent.parent.GetComponent<EntityResources>();
     }
 
     private void Start()
@@ -28,29 +25,33 @@ public class EntityDamageHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!entityResources)
+        if (!_entityResources)
         {
             AttachEntityResources();
         }
 
-        if (damageable && timeSinceLastDamage <= Time.time)
+        if (_damagers.Count > 0 && _timeSinceLastDamage <= Time.time)
         {
             StartCoroutine(ApplyHurt());
-            entityResources.Damage(damageAmount);
-            timeSinceLastDamage = Time.time + damageCooldown;
+            _entityResources.Damage((int)_damagers.Sum(d => d.DamageAmount));
+            _timeSinceLastDamage = Time.time + damageCooldown;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (interactionTags.Contains(collision.tag))
-            damageable = true;
+        var damager = collision.GetComponent<Damager>();
+        if (damager == null)
+            return;
+        _damagers.Add(damager);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (interactionTags.Contains(collision.tag))
-            damageable = false;
+        var damager = collision.GetComponent<Damager>();
+        if (damager == null)
+            return;
+        _damagers.Remove(damager);
     }
 
     private IEnumerator ApplyHurt()
