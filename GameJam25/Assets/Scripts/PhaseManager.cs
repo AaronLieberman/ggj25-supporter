@@ -65,19 +65,19 @@ public class PhaseManager : MonoBehaviour
 
         // Sandy underwater background, basically the same left to right.
 
-        IEnumerator heroFloating = _heroMover.FloatTo(new Vector3(-55, 0, 0));
+        var heroFloating = StartCoroutine(_heroMover.FloatTo(new Vector3(-55, 0, 0)));
 
         yield return Utilities.WaitForSeconds(0.5f);
 
         // Player character floats down from the top center
-        var playerFloat = _playerMover.FloatTo(new Vector3(-60, 0, 0));
+        var playerFloat = StartCoroutine(_playerMover.FloatTo(new Vector3(-60, 0, 0)));
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
         yield return heroFloating;
         _camera.Follow(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = _heroMover.WalkTo(new Vector2(4.38f, 0.0f)); // This si where the hero should start walking.
+        var heroWalk = StartCoroutine(_heroMover.WalkTo(new Vector2(4.38f, 0.0f)));
 
         //yield return Utilities.WaitForSeconds(1);
 
