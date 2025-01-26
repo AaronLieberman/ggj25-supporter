@@ -136,6 +136,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -585,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8659537662062659986, guid: d9839a7ff9bc4a94b91fdce0ad5c2605, type: 3}
       propertyPath: SkipTo
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -642,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 740554284282974755, guid: 7e523c362b4dc274a84189636fda6542, type: 3}
       propertyPath: m_Name
-      value: Environment
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
