@@ -47,6 +47,7 @@ public class PhaseManager : MonoBehaviour
     {
         yield return Phase0();
         yield return Phase1();
+        Utilities.GetRootComponent<YouWin>().ShowYouWin();
     }
 
     IEnumerator Phase0()
