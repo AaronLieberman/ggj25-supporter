@@ -109,8 +109,8 @@ public class PhaseManager : MonoBehaviour
         _hero.SetDivingGear(false);
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
-        var divingGearObject1Wait = divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6));
-        var divingGearObject2Wait = divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13));
+        var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
+        var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13)));
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
         divingGearObject1.GetComponent<PeriodicSpawner>().SetEnabled(true);
