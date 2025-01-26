@@ -11,22 +11,33 @@ public static class DialogBubbleData
 {
     static readonly List<Line> _lineData = new()
     {
-        new ("Boss_Roar", 1, "ROOOOARRRRRR!!!" ),
-        new ("Hero_IntroducePlayer", 1, "Oh, and that little guy over there is going to help, too." ),
-        new ("Hero_LostDivingGear", 1, "That thing was cramping my ears anyway." ),
-        new ("Hero_LostDivingGear", 1, "That thing was messing up my hair anyway." ),
-        new ("Hero_NeedsAir", 1, "Breathing water isn't as easy as I thought it would be." ),
-        new ("Hero_ReignOfDestruction", 1, "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" ),
+        new ("HeroOxygenLow", 1f, "Breathing water is harder than I thought it would be." ),
+        new ("HeroOxygenLow", 1f, "I can just hold my breath, I'll be fine" ),
         new ("HeroOxygenLow", 0.1f, "*gasp*" ),
         new ("HeroOxygenLow", 0.4f, "What's the synonym for \"thirsty\", but for air?" ),
-        new ("HeroOxygenLow", 1, "Breathing water is harder than I thought it would be." ),
-        new ("HeroOxygenLow", 1, "I can just hold my breath, I'll be fine" ),
+        new ("HeroWantsWeapon", 1f, "Fetch my sword!" ),
+        new ("HeroWantsWeapon", 1f, "Arm me!" ),
+        new ("HeroWantsWeapon", 1f, "Bring me a melee weapon!" ),
+        new ("HeroWantsWeapon", 1f, "Time to attack up close!" ),
         new ("HeroWantsWeapon", 0.2f, "Mjölnir! I summon thee!" ),
-        new ("HeroWantsWeapon", 1, "Arm me!" ),
-        new ("HeroWantsWeapon", 1, "Bring me a melee weapon!" ),
-        new ("HeroWantsWeapon", 1, "Fetch my sword!" ),
-        new ("HeroWantsWeapon", 1, "I summon my blade!" ),
-        new ("HeroWantsWeapon", 1, "Time to attack up close!" ),
+        new ("HeroWantsWeapon", 1f, "I summon my blade!" ),
+        new ("Hero_ReignOfDestruction", 1f, "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" ),
+        new ("Hero_IntroducePlayer", 1f, "Oh, and that little guy over there is going to help, too." ),
+        new ("Boss_Roar", 1f, "ROOOOARRRRRR!!!" ),
+        new ("Hero_LostDivingGear", 1f, "That thing was messing up my hair anyway." ),
+        new ("Hero_LostDivingGear", 1f, "That thing was cramping my ears anyway." ),
+        new ("Hero_NeedsAir", 1f, "Breathing water isn't as easy as I thought it would be." ),
+        new ("Hero_Brag", 1f, "I'm going to crush you like clam shells!" ),
+        new ("Hero_Brag", 1f, "I've got more abs than you have eyeballs!" ),
+        new ("Hero_Brag", 1f, "Your squishy body is about to be calamari!" ),
+        new ("Hero_Brag", 1f, "I'm going to make fish sauce out of you!" ),
+        new ("Hero_Brag", 1f, "I'm the alpha wolf!" ),
+        new ("Hero_Brag", 1f, "Bring it on! Try harder! Feel the burn!" ),
+        new ("Hero_Brag", 1f, "I'm not impressed by your writhing mass of tentacles!" ),
+        new ("Hero_Brag", 1f, "This is great, I don't even need to sweat down here." ),
+        new ("Hero_Brag", 1f, "They'll make sea shanties about how hard I'm going to hit you!" ),
+
+
     };
 
     struct Line
