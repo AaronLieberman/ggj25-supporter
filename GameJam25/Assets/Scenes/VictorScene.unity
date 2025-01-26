@@ -911,10 +911,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1860304457995544314, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4489609810463111392, guid: fb40ed82717dfc74f99c8f627931d879, type: 3}
       propertyPath: m_Name
       value: Player
@@ -984,6 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PostDamageInvicibilitySeconds: 0.1
 --- !u!61 &4640640721851880287
 BoxCollider2D:
   m_ObjectHideFlags: 0
