@@ -42,11 +42,6 @@ public class PhaseManager : MonoBehaviour
         StartCoroutine(RunGame());
     }
 
-    void Update()
-    {
-        
-    }
-
     IEnumerator RunGame()
     {
         yield return Phase0();
@@ -117,7 +112,7 @@ public class PhaseManager : MonoBehaviour
 
         // 5 additional seconds pass.
         yield return Utilities.WaitForSeconds(5);
-                
+
         // Hero dialog bubble: 
         yield return _hero.Say("Hero_LostDivingGear");
 

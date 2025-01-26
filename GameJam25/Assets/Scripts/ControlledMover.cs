@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Threading;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ControlledMover : MonoBehaviour
 {
-    enum MovementType { None, Floating, Walking }
+    enum MovementType { None, Floating, Walking, Thrown }
 
     [SerializeField] float WalkingSpeed = 6;
     [SerializeField] float FloatingSpeed = 6;
+    [SerializeField] float ThrowSpeed = 6;
 
     Transform _gfxHolder;
 
@@ -15,6 +18,7 @@ public class ControlledMover : MonoBehaviour
 
     CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
+    Vector3 _initialPosition;
     Vector3 _targetPosition;
 
     void Awake()
@@ -22,14 +26,6 @@ public class ControlledMover : MonoBehaviour
         _gfxHolder = transform.Find("Root").Find("GFX");
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        _targetPosition = transform.position;
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(transform.position, _targetPosition) > _minTargetDistanceThreshold)
@@ -37,7 +33,7 @@ public class ControlledMover : MonoBehaviour
             // Rotate GFX based on where they are going.
             if (_gfxHolder)
             {
-                _gfxHolder.localScale = new Vector3(
+                _gfxHolder.localScale = new(
                     _gfxHolder.position.x > _targetPosition.x ? -1 : _gfxHolder.localScale.x * _gfxHolder.localScale.x,
                     _gfxHolder.localScale.y,
                     _gfxHolder.localScale.z
@@ -47,10 +43,34 @@ public class ControlledMover : MonoBehaviour
             if (_movementType != MovementType.None)
             {
                 // Update object to move towards target position.
-                var speed = _movementType == MovementType.Walking ? WalkingSpeed : FloatingSpeed;
+                float speed = _movementType switch
+                {
+                    MovementType.Walking => WalkingSpeed,
+                    MovementType.Floating => FloatingSpeed,
+                    MovementType.Thrown => ThrowSpeed,
+                    _ => 0
+                };
+
                 var distance = speed * Time.deltaTime * Time.timeScale;
-                //Debug.Log("Move distance " + distance);
-                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, distance);
+                if (_movementType == MovementType.Thrown)
+                {
+                    var currentXY = new Vector3(transform.position.x, transform.position.y, 0);
+                    var targetXY = new Vector3(_targetPosition.x, _targetPosition.y, 0);
+                    var initialXY = new Vector3(_initialPosition.x, _initialPosition.y, 0);
+                    var updatedXY = Vector3.MoveTowards(currentXY, targetXY, distance);
+
+                    float totalDistance = Vector3.Distance(initialXY, targetXY);
+                    float distanceSoFar = Vector3.Distance(initialXY, currentXY);
+                    float distanceToTarget = Vector3.Distance(currentXY, targetXY);
+                    float updatedZ = -GetHeightAtFraction(totalDistance, 45, 1.0f - (distanceSoFar / totalDistance));
+                    Debug.Log("Throw distance " + distanceSoFar / totalDistance + " " + distanceToTarget + " " + distanceSoFar);
+                    transform.position = new(updatedXY.x, updatedXY.y, updatedZ);
+                }
+                else
+                {
+                    Debug.Log("Move distance " + distance);
+                    transform.position = Vector3.MoveTowards(transform.position, _targetPosition, distance);
+                }
             }
         }
     }
@@ -72,13 +92,17 @@ public class ControlledMover : MonoBehaviour
             transform.Translate(0, 0, -transform.position.z);
 
         _movementType = movementType;
+        _initialPosition = transform.position;
         _targetPosition = targetPos;
     }
 
     bool IsCloseToTarget()
     {
-        //Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + Vector3.Distance(transform.position, _targetPosition));
-        return Vector3.Distance(transform.position, _targetPosition) < _minTargetDistanceThreshold;
+        var distance = _movementType == MovementType.Thrown
+            ? Vector3.Distance(new(transform.position.x, transform.position.y, 0), new(_targetPosition.x, _targetPosition.y, 0))
+            : Vector3.Distance(transform.position, _targetPosition);
+        Debug.Log("IsCloseToTarget " + transform.position + " " + _targetPosition + " " + distance);
+        return distance < _minTargetDistanceThreshold;
     }
 
     IEnumerator WaitUntilCloseToTarget()
@@ -118,5 +142,25 @@ public class ControlledMover : MonoBehaviour
         {
             Debug.Log(gameObject.name + " stopped");
         }
+    }
+
+    public IEnumerator ThrowTo(Vector2 targetPos)
+    {
+        Debug.Log(gameObject.name + " thrown " + targetPos);
+
+        SetMovementTarget(targetPos, MovementType.Thrown);
+        yield return WaitUntilCloseToTarget();
+
+        if (!_movementCancel.IsCancellationRequested)
+        {
+            Debug.Log(gameObject.name + " landed");
+        }
+    }
+
+    static float GetHeightAtFraction(float distance, float angleDegrees, float t)
+    {
+        // y(t) = R * tan(theta) * [t - t^2]
+        double y = distance * Math.Tan(angleDegrees * Math.PI / 180.0) * (t - t * t);
+        return (float)y;
     }
 }

@@ -558,6 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkingSpeed: 6
   FloatingSpeed: 6
+  ThrowSpeed: 6
 --- !u!114 &6692807985201443378
 MonoBehaviour:
   m_ObjectHideFlags: 0
