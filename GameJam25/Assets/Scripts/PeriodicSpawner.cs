@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PeriodicSpawner : MonoBehaviour
 {
+    [SerializeField] bool startEnabled = false;
     public float RateInSeconds = 1;
     public float InitialWait = 1;
     public GameObject SpawnPrefab;
@@ -12,6 +13,7 @@ public class PeriodicSpawner : MonoBehaviour
 
     void Start()
     {
+        _enabled = startEnabled;
         _lastSpawn = Time.time;
     }
 
