@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60544cedb11f06f4eb1968019af373bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotsPerSecond: 4
+  ShotsPerSecond: 6
   Projectiles:
   - {fileID: 32080125439448090, guid: fdfe0ce243baf1641aa029809a26879a, type: 3}
   ShootImmediately: 1
