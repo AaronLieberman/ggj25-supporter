@@ -30,10 +30,13 @@ public class HeroController : MonoBehaviour
 
     private float lastSpeech;
 
-    void Start()
+    private void Awake()
     {
         EntityResources = GetComponent<EntityResources>();
+    }
 
+    void Start()
+    {
         _rigidBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponentInChildren<Animator>();

@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponentInChildren<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
+
+        if (EntityResources) EntityResources.Death += Respawn;
     }
 
     void Update()
@@ -124,6 +126,12 @@ public class PlayerController : MonoBehaviour
             _footstepTimer = 0f;
             _audioSource.PlayOneShot(FootstepClips[Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
+    }
+
+    void Respawn()
+    {
+        GetComponent<ControlledMover>().SnapTo(new Vector3(0.0f, 0.0f, 0.0f));
+        EntityResources.Heal(EntityResources.MaxHealth);
     }
 
     public void DashComplete()

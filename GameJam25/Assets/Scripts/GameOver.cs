@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    PlayerController _player;
+    HeroController _hero;
     Canvas _canvas;
 
     private void Awake()
     {
-        _player = Utilities.GetRootComponent<PlayerController>();
+        _hero = Utilities.GetRootComponent<HeroController>();
         _canvas = GetComponent<Canvas>();
     }
 
@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour
     {
         _canvas.enabled = false;
 
-        _player.EntityResources.Death += ShowGameOver;
+        if (_hero && _hero.EntityResources) _hero.EntityResources.Death += ShowGameOver;
     }
 
     public void ShowGameOver()
