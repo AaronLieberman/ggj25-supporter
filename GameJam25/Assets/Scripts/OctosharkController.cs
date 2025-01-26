@@ -44,6 +44,8 @@ public class OctosharkController : MonoBehaviour
         _shadow = GetComponentInChildren<Shadow>();
         _controlledMover = GetComponent<ControlledMover>();
 
+        if (EntityResources) EntityResources.Death += Die;
+
         AttachPlayerTarget();
     }
 
@@ -80,5 +82,10 @@ public class OctosharkController : MonoBehaviour
             _footstepTimer = 0f;
             _audioSource.PlayOneShot(FootstepClips[UnityEngine.Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 5459581088736782402}
   - component: {fileID: 7348781580240254552}
   - component: {fileID: 7948549218703606940}
+  - component: {fileID: -2186284706857353962}
+  - component: {fileID: 3076373341346045051}
   m_Layer: 10
   m_Name: Octoshark
   m_TagString: Enemy
@@ -305,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41666a73865fbf34b836a8091adccfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 100
   TakeDamageClips: []
   HealClips:
   - {fileID: 8300000, guid: 81dc63fca2562374982e8581042e9b02, type: 3}
@@ -468,6 +470,46 @@ MonoBehaviour:
   DamageBasedOnMaxHealth: 1
   DamageBasedOnMaxHealthScalar: 1
   DestroyOnContact: 0
+--- !u!50 &-2186284706857353962
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409976505824037489}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &3076373341346045051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409976505824037489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7224afa55f2269144941edabde9ccfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PostDamageInvicibilitySeconds: 0.1
 --- !u!1 &7619380621979978526
 GameObject:
   m_ObjectHideFlags: 0
