@@ -11,10 +11,10 @@ public static class DialogBubbleData
 {
     static readonly List<Line> _lineData = new()
     {
-        new ("HeroOxygenLow", 1f, "Breathing water is harder than I thought it would be." ),
-        new ("HeroOxygenLow", 1f, "I can just hold my breath, I'll be fine" ),
-        new ("HeroOxygenLow", 0.1f, "*gasp*" ),
-        new ("HeroOxygenLow", 0.4f, "What's the synonym for \"thirsty\", but for air?" ),
+        new ("Hero_NeedsAir", 1f, "Breathing water is harder than I thought it would be." ),
+        new ("Hero_NeedsAir", 1f, "I can just hold my breath, I'll be fine" ),
+        new ("Hero_NeedsAir", 0.1f, "*gasp*" ),
+        new ("Hero_NeedsAir", 0.4f, "What's the synonym for \"thirsty\", but for air?" ),
         new ("HeroWantsWeapon", 1f, "Fetch my sword!" ),
         new ("HeroWantsWeapon", 1f, "Arm me!" ),
         new ("HeroWantsWeapon", 1f, "Bring me a melee weapon!" ),
@@ -35,9 +35,22 @@ public static class DialogBubbleData
         new ("Hero_Brag", 1f, "Bring it on! Try harder! Feel the burn!" ),
         new ("Hero_Brag", 1f, "I'm not impressed by your writhing mass of tentacles!" ),
         new ("Hero_Brag", 1f, "This is great, I don't even need to sweat down here." ),
-        new ("Hero_Brag", 1f, "They'll make sea shanties about how hard I'm going to hit you!" ),
-
-
+        new ("Hero_Brag", 1f, "They'll sing sea shanties about how hard I'm going to hit you!" ),
+        new ("Hero_Brag", 1f, "WARCRYYYYYY!!!!!" ),
+        new ("Hero_StartPhase2", 1f, "I'm just getting started, little fish!" ),
+        new ("Hero_StartPhase3", 1f, "Hmph. This gun isn't cutting it. Time to get personal!" ),
+        new ("Hero_StartPhase4", 1f, "" ),
+        new ("Hero_StartPhase5", 1f, "" ),
+        new ("Hero_GetFlamingSwordSpecifically", 1f, "Fetch Me The Flaming Sword!" ),
+        new ("Boss_WrongDamageType", 1f, "..." ),
+        new ("Hero_AdmintsWrongDamageType", 1f, "That must not be the right damage type..." ),
+        new ("Hero_SummonAllWeapons", 1f, "Fetch Me ALL THE WEAPONS" ),
+        new ("Hero_UnarmedElement", 1f, "Too slippery for fists..." ),
+        new ("Hero_CorrectElementAttack", 1f, "That's the right one!" ),
+        new ("Hero_CorrectElementAttack", 1f, "That sinks in!" ),
+        new ("Hero_CorrectElementAttack", 1f, "Don't like that, eh?" ),
+        new ("Hero_CorrectElementAttack", 1f, "Does the baddy not like the elemental attacks?" ),
+        new ("Hero_WrongElementAttack", 1f, "Gah! Bring me the right one next time!" ),
     };
 
     struct Line
@@ -53,7 +66,7 @@ public static class DialogBubbleData
             Text = text;
         }
     }
-    
+
     static readonly Dictionary<string, List<Line>> _linesByKey = new();
 
     static DialogBubbleData()
