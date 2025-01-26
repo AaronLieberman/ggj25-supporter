@@ -5,6 +5,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
+public class AudioEntry
+{
+    public AudioClip Clip;
+    public float VolumeScale;
+}
+
 public class EntityResources : MonoBehaviour
 {
     public bool isAlive => _health > 0;
@@ -29,8 +36,8 @@ public class EntityResources : MonoBehaviour
     public event EventHandler HealthChanged;
     public UnityAction Death;
 
-    [SerializeField] List<AudioClip> TakeDamageClips;
-    [SerializeField] List<AudioClip> HealClips;
+    [SerializeField] List<AudioEntry> TakeDamageClips;
+    [SerializeField] List<AudioEntry> HealClips;
     AudioSource _audioSource;
 
     private void Awake()
@@ -43,12 +50,12 @@ public class EntityResources : MonoBehaviour
         Health = MaxHealth;
     }
 
-    AudioClip GetRandomAudioClip(List<AudioClip> audioClips)
+    AudioClip GetRandomAudioClip(List<AudioEntry> audioClips)
     {
         if (!audioClips.Any())
             return null;
 
-        return audioClips[UnityEngine.Random.Range(0, audioClips.Count - 1)];
+        return audioClips[UnityEngine.Random.Range(0, audioClips.Count - 1)].Clip;
     }
 
     public void Damage(int amount = 1)
