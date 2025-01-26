@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageAmount: 10
-  DamageBasedOnMaxHealth: 1
+  DamageBasedOnMaxHealth: 0
   DamageBasedOnMaxHealthScalar: 1
   DestroyOnContact: 0
 --- !u!50 &-2186284706857353962
