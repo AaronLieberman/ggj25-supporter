@@ -6,18 +6,17 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    void Awake()
+    DialogBubbleController _dialogBubble;
+
+    private void Start()
     {
+        _dialogBubble = GetComponentInChildren<DialogBubbleController>();
     }
 
-    void Update()
-    {
-    }
-
-    public IEnumerator Say(string v, float seconds)
+    public IEnumerator Say(string v)
     {
         Debug.Log("Boss says: \"" + v + "\"");
-        yield return Utilities.WaitForSeconds(seconds);
+        return _dialogBubble.PopDialog(v);
     }
 
     public void StartShooters()
