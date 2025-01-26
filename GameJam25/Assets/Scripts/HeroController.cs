@@ -26,8 +26,6 @@ public class HeroController : MonoBehaviour
     DialogBubbleController _dialogBubble;
     Shadow _shadow;
 
-    bool _isDivingGearEquipped = false;
-
     private float lastSpeech;
 
     private void Awake()
@@ -92,9 +90,10 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    public void SetDivingGear(bool v)
+    public void LoseDivingGear()
     {
-        _isDivingGearEquipped = v;
+        transform.Find("Root").Find("GFXHelmet").gameObject.SetActive(false);
+        transform.Find("Root").Find("GFX").gameObject.SetActive(true);
     }
 
     public void SetMachineGunActive(bool v)

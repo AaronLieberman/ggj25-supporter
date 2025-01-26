@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkipTo: 0
+  Invincible: 0
   DivingGearPrefab: {fileID: 2932546119148665084, guid: cdd1e17f855d97f448e5cd8d3cbcc0a4, type: 3}
+  HelmetPrefab: {fileID: 2932546119148665084, guid: 5631a120d21e34e4c9089bd2e5bb8ea6, type: 3}

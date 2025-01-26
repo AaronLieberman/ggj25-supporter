@@ -12,19 +12,12 @@ public class ControlledMover : MonoBehaviour
     [SerializeField] float FloatingSpeed = 6;
     [SerializeField] float ThrowSpeed = 6;
 
-    Transform _gfxHolder;
-
     MovementType _movementType = MovementType.None;
 
     CancellationTokenSource _movementCancel = new();
     float _minTargetDistanceThreshold = 0.1f;
     Vector3 _initialPosition;
     Vector3 _targetPosition;
-
-    void Awake()
-    {
-        _gfxHolder = transform.Find("Root").Find("GFX");
-    }
 
     void Update()
     {

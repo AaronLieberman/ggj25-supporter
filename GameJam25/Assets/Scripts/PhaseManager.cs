@@ -33,6 +33,8 @@ public class PhaseManager : MonoBehaviour
     // should have a DivingGear and a Throwable on it
     public GameObject DivingGearPrefab;
 
+    public GameObject HelmetPrefab;
+
     void Awake()
     {
         _introfade = Utilities.GetRootComponent<IntroFade>();
@@ -95,8 +97,6 @@ public class PhaseManager : MonoBehaviour
         yield return playerFloat;
         var playerIntroWait = StartCoroutine(_playerMover.WalkTo(new(-3, 0.0f)));
 
-        if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
-
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
         yield return heroWalk; 
         yield return _hero.Say("Hero_ReignOfDestruction");
@@ -107,18 +107,23 @@ public class PhaseManager : MonoBehaviour
         yield return playerIntroWait;
         _player.SetControlsEnabled(true);
 
+        if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
+
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
         var bossRoar = StartCoroutine(_boss.Say("Boss_Roar"));
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         // The diving gear flies off the Hero. It lands on the ground.
-        _hero.SetDivingGear(false);
+        _hero.LoseDivingGear();
         _hero.GetComponent<PeriodicDamager>().SetEnabled(true);
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
+        var helmetObject = Instantiate(HelmetPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
         var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13)));
+        helmetObject.GetComponent<ControlledMover>().SnapTo(_hero.transform.position + new Vector3(0, 7, 0));
+        var helmetWait = StartCoroutine(helmetObject.GetComponent<ControlledMover>().ThrowTo(new(-9, -3)));
         yield return _camera.Shake(1);
         yield return bossRoar;
 
@@ -126,6 +131,7 @@ public class PhaseManager : MonoBehaviour
  
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
+        yield return helmetWait;
         //Every 5 seconds a Oxygen Bubble comes out of the diving gear and begins moving slowly toward the top of the screen. The Hero Health Bar appears next to him at 100% and starts ticking down. About 30 seconds from 100% to 0%.
         divingGearObject1.GetComponent<PeriodicSpawner>().SetEnabled(true);
         divingGearObject2.GetComponent<PeriodicSpawner>().SetEnabled(true);
