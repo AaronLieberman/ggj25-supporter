@@ -127,22 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2085657177287028523, guid: b164ebf92762ee843bcb27e4e9307807, type: 3}
-      propertyPath: m_text
-      value: 'Aaron Lieberman, Programming
-
-        Anna Shabayev, Design
-
-        Bodie
-        Lee, Art
-
-        Eric Carter, Design
-
-        Jeremy Bilas, Programming
-
-        Victor
-        Erickson, Programming'
-      objectReference: {fileID: 0}
     - target: {fileID: 2085657178702008307, guid: b164ebf92762ee843bcb27e4e9307807, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -619,14 +603,6 @@ PrefabInstance:
     - target: {fileID: 1273074954207303702, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181194925310755976, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9659259
-      objectReference: {fileID: 0}
-    - target: {fileID: 2181194925310755976, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.25881907
       objectReference: {fileID: 0}
     - target: {fileID: 4672211052949739171, guid: 299a508e9a72ed244a0f658e2383d12b, type: 3}
       propertyPath: m_Name
