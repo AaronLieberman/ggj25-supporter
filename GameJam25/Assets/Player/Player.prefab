@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 6941747622577871641}
   - component: {fileID: 8334097794071664374}
   - component: {fileID: 1659901683252001837}
+  - component: {fileID: 5965794716052358368}
   m_Layer: 11
   m_Name: GFX
   m_TagString: Player
@@ -323,6 +324,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.3, y: 2.63}
   m_EdgeRadius: 0
+--- !u!114 &5965794716052358368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2827888564880345228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbac220fb13f04049bb0e71427849b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4180244498635541423
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 10
   DashSpeed: 25
+  DashCooldown: 1
   DashClips:
   - {fileID: 8300000, guid: 89cd6035cdbe42f4c93846ef39463fdc, type: 3}
   - {fileID: 8300000, guid: ebe005f950de0c745b4ebae130c4cc41, type: 3}
