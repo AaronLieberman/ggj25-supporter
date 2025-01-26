@@ -120,8 +120,8 @@ public class PhaseManager : MonoBehaviour
         var divingGearObject1 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var divingGearObject2 = Instantiate(DivingGearPrefab, _hero.gameObject.transform.position, Quaternion.identity);
         var helmetObject = Instantiate(HelmetPrefab, _hero.gameObject.transform.position, Quaternion.identity);
-        var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-12, 6)));
-        var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -13)));
+        var divingGearObject1Wait = StartCoroutine(divingGearObject1.GetComponent<ControlledMover>().ThrowTo(new(-10, 7.5f)));
+        var divingGearObject2Wait = StartCoroutine(divingGearObject2.GetComponent<ControlledMover>().ThrowTo(new(-12, -5)));
         helmetObject.GetComponent<ControlledMover>().SnapTo(_hero.transform.position + new Vector3(0, 7, 0));
         var helmetWait = StartCoroutine(helmetObject.GetComponent<ControlledMover>().ThrowTo(new(-18, -3)));
         yield return _camera.Shake(1);
@@ -153,9 +153,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
 
-        var phaseEnd = StartCoroutine(Utilities.WaitForSeconds(60.0f));
-
-
+        var phaseEnd = StartCoroutine(Utilities.WaitForSeconds(40.0f));
 
         _hero.StartBragging();
 
@@ -188,7 +186,7 @@ public class PhaseManager : MonoBehaviour
         //Octoshark Minions(Half Octopus, 1 / 8th Shark) begin to spawn from the Leviathan. 
         _octosharkSpawner.SetEnabled(true);
 
-        yield return Utilities.WaitForSeconds(30f);
+        yield return Utilities.WaitForSeconds(45f);
     }
 
     // IEnumerator Phase3()

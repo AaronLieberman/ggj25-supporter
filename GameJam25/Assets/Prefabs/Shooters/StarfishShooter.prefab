@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60544cedb11f06f4eb1968019af373bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShotsPerSecond: 3
+  ShotsPerSecond: 2
   Projectiles:
   - {fileID: 32080125439448090, guid: be521cd4134e5024384c896f9eeb49a1, type: 3}
   ShootImmediately: 1
-  ShootDirection: {x: -1, y: 0, z: 0}
   ShootConeDegrees: 40

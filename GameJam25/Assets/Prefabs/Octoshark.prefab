@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b738633aa6fc143a8ed157e8711304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingSpeed: 10
+  WalkingSpeed: 5
   FloatingSpeed: 6
   ThrowSpeed: 6
 --- !u!114 &5727393341813088566
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41666a73865fbf34b836a8091adccfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 40
   TakeDamageClips:
   - Clip: {fileID: 8300000, guid: 9bd5f5515b5ba6a45bfe801652f34f49, type: 3}
     VolumeScale: 1
@@ -540,7 +540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7619380621979978526}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25881907, y: -0, z: -0, w: 0.9659259}
+  m_LocalRotation: {x: -0.25881904, y: -0, z: -0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
