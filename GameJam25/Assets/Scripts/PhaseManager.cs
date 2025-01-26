@@ -81,7 +81,7 @@ public class PhaseManager : MonoBehaviour
         _camera.Follow(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = _heroMover.WalkTo(new Vector2(4.38f, 0.0f));
+        var heroWalk = _heroMover.WalkTo(new Vector2(4.38f, 0.0f)); // This si where the hero should start walking.
 
         //yield return Utilities.WaitForSeconds(1);
 
@@ -92,9 +92,13 @@ public class PhaseManager : MonoBehaviour
         if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
-        yield return heroWalk;
+        yield return heroWalk;  //TODO: For some reason the hero doens't start walking until we get here. But he should have been walking since we created this
         yield return _hero.Say("Hero_ReignOfDestruction");
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
+
+        //TODO: This is placeholder until the camera follow works
+        _playerMover.SnapTo(new Vector2(-4.38f, 0.0f));
+
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
         var bossRoar = _boss.Say("Boss_Roar", 4.5f);
