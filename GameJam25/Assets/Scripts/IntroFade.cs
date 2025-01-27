@@ -27,7 +27,6 @@ public class IntroFade : MonoBehaviour
 
     void TextComplete()
     {
-        gameObject.SetActive(false);
         _done.SetResult(true);
     }
 }
