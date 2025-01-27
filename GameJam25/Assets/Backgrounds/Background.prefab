@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RateInSeconds: 7
-  InitialWait: 1
+  InitialWait: 0
   SpawnPrefab: {fileID: 7409976505824037489, guid: 834675e4cf61a1a42a236d02fd7d75bd, type: 3}
   SpawnPosition: {fileID: 7262363248073656440}
 --- !u!1 &7845518696272512688
@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RateInSeconds: 5
-  InitialWait: 4
+  InitialWait: 0
   SpawnPrefab: {fileID: 7409976505824037489, guid: 834675e4cf61a1a42a236d02fd7d75bd, type: 3}
   SpawnPosition: {fileID: 4694075682395575815}
 --- !u!1 &8862590995032285129
