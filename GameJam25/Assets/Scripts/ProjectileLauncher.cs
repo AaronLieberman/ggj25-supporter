@@ -10,8 +10,17 @@ public class ProjectileLauncher : MonoBehaviour
     public bool ShootImmediately = true;
     public float ShootConeDegrees;
 
+    [SerializeField] AudioClip ShootSound;
+    [SerializeField] float SoundVolume;
+    AudioSource _audioSource;
+
     float _timeLastShot;
     int _lastProjIndex = 0;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -41,5 +50,7 @@ public class ProjectileLauncher : MonoBehaviour
             Vector3 randomDirection = rotation * (transform.rotation * Vector3.right);
             projectileMovement.GoInDirection(randomDirection);
         }
+
+        if (ShootSound && _audioSource) _audioSource.PlayOneShot(ShootSound, SoundVolume);
     }
 }
