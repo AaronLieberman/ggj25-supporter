@@ -24,6 +24,7 @@ public class PhaseManager : MonoBehaviour
     PlayerController _player;
     ControlledMover _playerMover;
     BossController _boss;
+    AudioSource _audioSource;
 
     PeriodicSpawner _octosharkSpawner;
 
@@ -35,6 +36,8 @@ public class PhaseManager : MonoBehaviour
 
     public GameObject HelmetPrefab;
 
+    public AudioClip LeviathanRoar;
+
     void Awake()
     {
         _introfade = Utilities.GetRootComponent<IntroFade>();
@@ -44,6 +47,7 @@ public class PhaseManager : MonoBehaviour
         _player = Utilities.GetRootComponent<PlayerController>();
         _playerMover = _player.GetComponent<ControlledMover>();
         _boss = Utilities.GetRootComponent<BossController>();
+        _audioSource = GetComponent<AudioSource>();
 
         _octosharkSpawner = GameObject.Find("Terrain").GetComponentInChildren<PeriodicSpawner>();
     }
@@ -112,6 +116,7 @@ public class PhaseManager : MonoBehaviour
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
         var bossRoar = StartCoroutine(_boss.Say("Boss_Roar"));
+        _audioSource.PlayOneShot(LeviathanRoar);
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         // The diving gear flies off the Hero. It lands on the ground.
@@ -176,6 +181,7 @@ public class PhaseManager : MonoBehaviour
         if (SkipTo == PhaseSkipTo.Phase2) Utilities.FastMode = false;
 
         var bossRoar = StartCoroutine(_boss.Say("Boss_Roar"));
+        _audioSource.PlayOneShot(LeviathanRoar);
         // Screen shake.
         yield return Utilities.WaitForSeconds(0.5f);
         yield return _camera.Shake(1);
@@ -209,6 +215,7 @@ public class PhaseManager : MonoBehaviour
 
     //     //If correct damage type
     //     bossRoar = StartCoroutine(_boss.Say("Boss_Roar", 4.5f));
+    //     _audioSource.PlayOneShot(LeviathanRoar);
     //     // Screen shake.
     //     yield return Utilities.WaitForSeconds(0.5f);
     //     yield return _camera.Shake(1);
