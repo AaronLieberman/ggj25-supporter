@@ -10,11 +10,6 @@ public class PeriodicSpawner : MonoBehaviour
     bool _enabled;
     float _lastSpawn;
 
-    void Start()
-    {
-        _lastSpawn = Time.time;
-    }
-
     public void SetEnabled(bool v)
     {
         _enabled = v;
@@ -28,7 +23,7 @@ public class PeriodicSpawner : MonoBehaviour
 
         if (Time.time - _lastSpawn > RateInSeconds)
         {
-            Instantiate(SpawnPrefab, SpawnPosition);
+            Instantiate(SpawnPrefab, SpawnPosition.position, Quaternion.identity);
             _lastSpawn = Time.time;
         }
     }

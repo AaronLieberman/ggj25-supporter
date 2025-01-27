@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum PhaseSkipTo
@@ -26,7 +28,7 @@ public class PhaseManager : MonoBehaviour
     BossController _boss;
     AudioSource _audioSource;
 
-    PeriodicSpawner _octosharkSpawner;
+    List<PeriodicSpawner> _octosharkSpawners;
 
     public PhaseSkipTo SkipTo;
     public bool Invincible;
@@ -37,6 +39,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject HelmetPrefab;
 
     public AudioClip LeviathanRoar;
+    bool _wasInvincible;
 
     void Awake()
     {
@@ -49,12 +52,18 @@ public class PhaseManager : MonoBehaviour
         _boss = Utilities.GetRootComponent<BossController>();
         _audioSource = GetComponent<AudioSource>();
 
-        _octosharkSpawner = GameObject.Find("Terrain").GetComponentInChildren<PeriodicSpawner>();
+        _octosharkSpawners = GameObject.Find("Terrain").GetComponentsInChildren<PeriodicSpawner>().ToList();
     }
 
     private void Start()
     {
         StartCoroutine(RunGame());
+    }
+
+    void EndFastMode()
+    {
+        Utilities.FastMode = false; 
+        Invincible = _wasInvincible;
     }
 
     IEnumerator RunGame()
@@ -70,14 +79,15 @@ public class PhaseManager : MonoBehaviour
         _heroMover.SnapTo(new Vector3(-65, 0, -32));
         _playerMover.SnapTo(new Vector3(-70, 0, -32));
 
-        if (SkipTo != PhaseSkipTo.None) Utilities.FastMode = true;
+        _wasInvincible = Invincible;
+        if (SkipTo != PhaseSkipTo.None) { Utilities.FastMode = true; Invincible = true; }
 
         _player.SetControlsEnabled(false);
 
         _introfade.enabled = true;
         yield return Utilities.DoAndWait(_introfade.Go());
 
-        if (SkipTo == PhaseSkipTo.StartCinematic) Utilities.FastMode = false;
+        if (SkipTo == PhaseSkipTo.StartCinematic) EndFastMode();
 
         // Sandy underwater background, basically the same left to right.
 
@@ -102,7 +112,7 @@ public class PhaseManager : MonoBehaviour
         var playerIntroWait = StartCoroutine(_playerMover.WalkTo(new(-3, 0.0f)));
 
         // The Hero walking right reveals The Leviathan. A Hero Dialog bubble pops up and says "Alright Leviathan, your reign of destruction is over! I'm here to slay you!" Dialog bubbles last 4 seconds then go away on their own.
-        yield return heroWalk; 
+        yield return heroWalk;
         yield return _hero.Say("Hero_ReignOfDestruction");
         // 4.5 seconds later a second hero dialog pops: "Oh, and that little guy over there is going to help, too.
 
@@ -111,7 +121,7 @@ public class PhaseManager : MonoBehaviour
         yield return playerIntroWait;
         _player.SetControlsEnabled(true);
 
-        if (SkipTo == PhaseSkipTo.StartOfControl) Utilities.FastMode = false;
+        if (SkipTo == PhaseSkipTo.StartOfControl) EndFastMode();
 
         yield return _hero.Say("Hero_IntroducePlayer");
         // 4.5 seconds later a Leviathan Dialog Bubble pops that says "ROOOOARRRRRR!!!!"
@@ -132,8 +142,8 @@ public class PhaseManager : MonoBehaviour
         yield return _camera.Shake(1);
         yield return bossRoar;
 
-        if (SkipTo == PhaseSkipTo.DivingGear) Utilities.FastMode = false;
- 
+        if (SkipTo == PhaseSkipTo.DivingGear) EndFastMode();
+
         yield return divingGearObject1Wait;
         yield return divingGearObject2Wait;
         yield return helmetWait;
@@ -156,7 +166,7 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase1()
     {
-        if (SkipTo == PhaseSkipTo.Phase1) Utilities.FastMode = false;
+        if (SkipTo == PhaseSkipTo.Phase1) EndFastMode();
 
         var phaseEnd = StartCoroutine(Utilities.WaitForSeconds(40.0f));
 
@@ -178,7 +188,7 @@ public class PhaseManager : MonoBehaviour
 
     IEnumerator Phase2()
     {
-        if (SkipTo == PhaseSkipTo.Phase2) Utilities.FastMode = false;
+        if (SkipTo == PhaseSkipTo.Phase2) EndFastMode();
 
         var bossRoar = StartCoroutine(_boss.Say("Boss_Roar"));
         _audioSource.PlayOneShot(LeviathanRoar);
@@ -190,14 +200,17 @@ public class PhaseManager : MonoBehaviour
         yield return _hero.Say("Hero_StartPhase2");
 
         //Octoshark Minions(Half Octopus, 1 / 8th Shark) begin to spawn from the Leviathan. 
-        _octosharkSpawner.SetEnabled(true);
+        foreach (var spawner in _octosharkSpawners)
+        {
+            spawner.SetEnabled(true);
+        }
 
         yield return Utilities.WaitForSeconds(45f);
     }
 
     // IEnumerator Phase3()
     // {
-    //     if (SkipTo == PhaseSkipTo.Phase3) Utilities.FastMode = false;
+    //     if (SkipTo == PhaseSkipTo.Phase3) EndFastMode();
 
     //     yield return _hero.Say("Hero_StartPhase3");
     //     yield return _hero.Say("Hero_GetFlamingSwordSpecifically");
@@ -250,14 +263,14 @@ public class PhaseManager : MonoBehaviour
 
     // IEnumerator Phase4()
     // {
-    //     if (SkipTo == PhaseSkipTo.Phase4) Utilities.FastMode = false;
+    //     if (SkipTo == PhaseSkipTo.Phase4) EndFastMode();
 
     //     yield return _hero.Say("Hero_StartPhase4");
     // }
 
     // IEnumerator Phase5()
     // {
-    //     if (SkipTo == PhaseSkipTo.Phase5) Utilities.FastMode = false;
+    //     if (SkipTo == PhaseSkipTo.Phase5) EndFastMode();
 
     //     yield return _hero.Say("Hero_StartPhase5");
     // }

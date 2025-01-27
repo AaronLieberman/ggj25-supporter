@@ -9,24 +9,11 @@ public class OctosharkController : MonoBehaviour
 
     [SerializeField] List<AudioClip> FootstepClips;
     [SerializeField] float FootstepInterval = 0.15f;
-    float _footstepTimer = 0f;
 
     [SerializeField] float PursueInterval = 0.1f;
-    float _pursueCooldownTimer = 0f;
     Transform _pursueTarget;
 
     ControlledMover _controlledMover;
-    Rigidbody2D _rigidBody;
-    SpriteRenderer _spriteRenderer;
-    Animator _animator;
-    BoxCollider2D _boxCollider;
-    AudioSource _audioSource;
-    DialogBubbleController _dialogBubble;
-    Shadow _shadow;
-
-    bool _isDivingGearEquipped = false;
-
-    private float lastSpeech;
 
     private void Awake()
     {
@@ -35,13 +22,6 @@ public class OctosharkController : MonoBehaviour
 
     void Start()
     {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _animator = GetComponentInChildren<Animator>();
-        _boxCollider = GetComponentInChildren<BoxCollider2D>();
-        _audioSource = GetComponent<AudioSource>();
-        _dialogBubble = GetComponentInChildren<DialogBubbleController>();
-        _shadow = GetComponentInChildren<Shadow>();
         _controlledMover = GetComponent<ControlledMover>();
 
         if (EntityResources) EntityResources.Death += Die;
@@ -71,16 +51,6 @@ public class OctosharkController : MonoBehaviour
         else
         {
             AttachPlayerTarget();
-        }
-    }
-
-    void PlayFootsteps()
-    {
-        _footstepTimer += Time.deltaTime;
-        if (_footstepTimer >= FootstepInterval)
-        {
-            _footstepTimer = 0f;
-            _audioSource.PlayOneShot(FootstepClips[UnityEngine.Random.Range(0, FootstepClips.Count - 1)], 0.5f);
         }
     }
 
