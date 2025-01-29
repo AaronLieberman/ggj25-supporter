@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7898265798416357435}
   - component: {fileID: 32080125439448086}
   - component: {fileID: 7008845859883150259}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: MachineGunProjectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 854016
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8693880326627469743}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 1037700845834979673}
   - component: {fileID: 6261955578530387890}
   - component: {fileID: 3454476910599491922}
-  m_Layer: 19
+  m_Layer: 20
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

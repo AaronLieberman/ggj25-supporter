@@ -26,8 +26,8 @@ TagManager:
   - Hero
   - Boss
   - Bubble
-  - Projectile
-  - 
+  - Enemy Projectile
+  - Friendly Projectile
   - 
   - 
   - 
