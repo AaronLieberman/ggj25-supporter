@@ -29,7 +29,9 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, new RefreshRate() { numerator = 1, denominator = 60 });
+#if !UNITY_WEBGL
+        //Screen.SetResolution(1280, 720, FullScreenMode.Windowed, new RefreshRate() { numerator = 60, denominator = 1 });
+#endif
     }
 
     void Update()
