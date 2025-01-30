@@ -100,7 +100,7 @@ public class PhaseManager : MonoBehaviour
 
         // Hero floats down from the top, camera centered on him. The Hero sprite has a dive gear on. He stops in the middle of the room like he has landed on the bottom.
         yield return heroFloating;
-        _camera.Follow(_hero.gameObject);
+        _camera.PlaySlideAnimation(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
         var heroWalk = StartCoroutine(_heroMover.WalkTo(new(4.38f, 0.0f)));

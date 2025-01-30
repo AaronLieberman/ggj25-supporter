@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 
     float _shakeSecondsRemaining;
 
-    public void Follow(GameObject o)
+    public void PlaySlideAnimation(GameObject o)
     {
         Debug.Log("Camera following " + o.name);
         //Player = o.GetComponent<Transform>(); // Welp, I thought this would work, but it does not. --ECarter
