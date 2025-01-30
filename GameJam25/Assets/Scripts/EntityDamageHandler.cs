@@ -39,8 +39,9 @@ public class EntityDamageHandler : MonoBehaviour
             int totalDamage = 0;
             foreach (var damager in damagers)
             {
-                totalDamage += damager.DamageBasedOnMaxHealth ? (int)((damager.DamageAmount / 100.0f) * _entityResources.MaxHealth * damager.DamageBasedOnMaxHealthScalar) : (int)damager.DamageAmount;
+                totalDamage += damager.DamageBasedOnMaxHealth ? (int)(damager.DamageAmount / 100.0f * _entityResources.MaxHealth * damager.DamageBasedOnMaxHealthScalar) : (int)damager.DamageAmount;
             }
+
             _entityResources.Damage(totalDamage);
 
             var damagersToDestroy = damagers.Where(d => d.DestroyOnContact).ToList();
