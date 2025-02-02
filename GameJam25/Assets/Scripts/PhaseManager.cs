@@ -103,7 +103,7 @@ public class PhaseManager : MonoBehaviour
         _camera.PlaySlideAnimation(_hero.gameObject);
 
         //but the hero has started walking to the right and the camera follows the hero
-        var heroWalk = StartCoroutine(_heroMover.WalkTo(new(4.38f, 0.0f)));
+        var heroWalk = StartCoroutine(_heroMover.WalkTo(new(3.9f, 0.0f)));
 
         yield return Utilities.WaitForSeconds(1);
 

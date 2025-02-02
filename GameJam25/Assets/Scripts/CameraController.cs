@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
     public void PlaySlideAnimation(GameObject o)
     {
         Debug.Log("Camera following " + o.name);
-        //Player = o.GetComponent<Transform>(); // Welp, I thought this would work, but it does not. --ECarter
 
+        GetComponent<Animator>().speed = Time.timeScale;
         GetComponent<Animator>().SetTrigger("Slide");
     }
 

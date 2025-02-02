@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 public static class Utilities
 {
-    public static bool FastMode { get { return Time.timeScale > 1; } set { Time.timeScale = value ? 10 : 1; } }
+	public static bool FastMode
+	{
+		get { return Time.timeScale > 1; }
+		set { Time.timeScale = value ? 10 : 1; }
+	}
 
-    public static T GetRootComponent<T>() where T : Component
+	public static T GetRootComponent<T>() where T : Component
 	{
 		return SceneManager.GetActiveScene().GetRootGameObjects()
 			.Select(a => a.GetComponent<T>())
@@ -27,7 +31,13 @@ public static class Utilities
 		return SceneManager.GetActiveScene().GetRootGameObjects()
 			.Select(a => a.GetComponentInChildren<T>())
 			.SingleOrDefault(a => a != null);
-	} 
+	}
+
+	public static IEnumerable<T> GetRootComponentsRecursive<T>() where T : Component
+	{
+		return SceneManager.GetActiveScene().GetRootGameObjects()
+			.SelectMany(a => a.GetComponentsInChildren<T>());
+	}
 
 	public static void DestroyAllChildren(Transform transform, bool immediate = false)
 	{
@@ -80,7 +90,7 @@ public static class Utilities
 
 	public static IEnumerator DoAndWait(Task task)
 	{
-        yield return new WaitUntil(() => task.IsCompleted);
+		yield return new WaitUntil(() => task.IsCompleted);
 	}
 
 	public static IEnumerator WaitForSeconds(float seconds)
@@ -88,13 +98,13 @@ public static class Utilities
 		yield return new WaitForSeconds(seconds / Time.timeScale);
 	}
 
-    public static int IncrementIndex(int currentIndex, int indexMax)
-    {
-        int newIndex = currentIndex + 1;
-        if (currentIndex > indexMax)
-        {
-            newIndex = 0;
-        }
-        return newIndex;
-    }
+	public static int IncrementIndex(int currentIndex, int indexMax)
+	{
+		int newIndex = currentIndex + 1;
+		if (currentIndex > indexMax)
+		{
+			newIndex = 0;
+		}
+		return newIndex;
+	}
 }

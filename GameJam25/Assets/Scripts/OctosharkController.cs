@@ -8,9 +8,9 @@ public class OctosharkController : MonoBehaviour
     enum OctosharkState { Idle, Running }
 
     [SerializeField] List<AudioClip> FootstepClips;
-    [SerializeField] float FootstepInterval = 0.15f;
+    // [SerializeField] float FootstepInterval = 0.15f;
+    // [SerializeField] float PursueInterval = 0.1f;
 
-    [SerializeField] float PursueInterval = 0.1f;
     Transform _pursueTarget;
 
     ControlledMover _controlledMover;
